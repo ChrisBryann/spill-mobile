@@ -17,7 +17,7 @@ module.exports = {
         'error-red': '#FF8E87',
       },
       fontFamily: {
-        sans: ['Quicksand'],
+        quicksand: ['Quicksand'],
       },
     },
   },

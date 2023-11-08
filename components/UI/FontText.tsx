@@ -6,7 +6,11 @@ type Props = {
   style?: string | undefined;
 };
 const FontText = ({children, style}: Props) => {
-  return <Text className={`font-quicksand ${style}`}>{children}</Text>;
+  return (
+    <Text className={`${style}`} style={{fontFamily: 'Quicksand'}}>
+      {children}
+    </Text>
+  );
 };
 
 export default FontText;
