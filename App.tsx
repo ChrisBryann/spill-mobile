@@ -8,19 +8,20 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
-import HomeComponent from './components/Home/HomeComponent';
 import {AppStackParamsList} from './types';
 import SignupComponent from './components/Auth/SignupComponent';
 import SigninComponent from './components/Auth/SigninComponent';
+import AboutComponent from './components/About/AboutComponent';
+import HomeComponent from './components/Home/HomeComponent';
 
 const AppStack = createNativeStackNavigator<AppStackParamsList>();
 function App(): JSX.Element {
   return (
     <NavigationContainer>
-      <AppStack.Navigator initialRouteName="Home">
+      <AppStack.Navigator initialRouteName="About">
         <AppStack.Screen
-          name="Home"
-          component={HomeComponent}
+          name="About"
+          component={AboutComponent}
           options={{headerShown: false}}
         />
         <AppStack.Screen
@@ -31,6 +32,11 @@ function App(): JSX.Element {
         <AppStack.Screen
           name="Signin"
           component={SigninComponent}
+          options={{headerShown: false}}
+        />
+        <AppStack.Screen
+          name="Home"
+          component={HomeComponent}
           options={{headerShown: false}}
         />
       </AppStack.Navigator>

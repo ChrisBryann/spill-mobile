@@ -1,40 +1,24 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
-import {Image, TouchableOpacity, View} from 'react-native';
-import {AppStackParamsList} from '../../types';
-import {NC_BILL_IMG} from '../../assets/images';
-import FontText from '../UI/FontText';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import {AppStackParamsList, HomeTabParamsList} from '../../types';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import DashboardComponent from './Dashboard/DashboardComponent';
+import ExpensesComponent from './Expenses/ExpensesComponent';
+import PeopleComponent from './People/PeopleComponent';
+import AccountComponent from './Account/AccountComponent';
+
+const HomeTab = createBottomTabNavigator<HomeTabParamsList>();
 
 const HomeComponent = ({
   navigation,
 }: NativeStackScreenProps<AppStackParamsList, 'Home'>) => {
   return (
-    <SafeAreaView className="bg-white flex-1 justify-center items-center p-6">
-      <FontText style="text-4xl font-bold text-base-green">spill.</FontText>
-      <FontText style="mt-auto mb-0 text-xl font-bold">
-        We make splitting easy.
-      </FontText>
-      <Image
-        source={NC_BILL_IMG}
-        className="w-full h-3/4"
-        resizeMode="contain"
-      />
-      <View className="flex flex-row gap-2">
-        <TouchableOpacity
-          className="p-4 w-2/4 bg-base-green rounded-full shadow-md"
-          onPress={() => navigation.navigate('Signup')}>
-          <FontText style="font-bold text-center text-md">Get Started</FontText>
-        </TouchableOpacity>
-        <TouchableOpacity
-          className="p-4 w-2/4 bg-black rounded-full shadow-md"
-          onPress={() => navigation.navigate('Signin')}>
-          <FontText style="font-bold text-center text-base-green text-md">
-            Sign In
-          </FontText>
-        </TouchableOpacity>
-      </View>
-    </SafeAreaView>
+    <HomeTab.Navigator screenOptions={{headerShown: false}}>
+      <HomeTab.Screen name="Dashboard" component={DashboardComponent} />
+      <HomeTab.Screen name="Expenses" component={ExpensesComponent} />
+      <HomeTab.Screen name="People" component={PeopleComponent} />
+      <HomeTab.Screen name="Account" component={AccountComponent} />
+    </HomeTab.Navigator>
   );
 };
 
