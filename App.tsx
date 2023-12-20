@@ -11,9 +11,7 @@ import React from 'react';
 import {AppStackParamsList} from './screen.types';
 import AboutComponent from './components/About/AboutComponent';
 import HomeComponent from './components/Home/HomeComponent';
-import {StatusBar, TouchableOpacity} from 'react-native';
-import {ChevronLeftIcon} from 'react-native-heroicons/outline';
-import CustomHeaderTitle from './components/UI/CustomHeaderTitle';
+import {StatusBar} from 'react-native';
 import AuthComponent from './components/Auth/AuthComponent';
 // import {useColorScheme} from 'nativewind';
 
@@ -22,7 +20,7 @@ function App(): JSX.Element {
   // const {colorScheme} = useColorScheme();
   return (
     <>
-      <StatusBar barStyle={'light-content'} />
+      <StatusBar barStyle={'dark-content'} />
       <NavigationContainer>
         <AppStack.Navigator
           initialRouteName="About"

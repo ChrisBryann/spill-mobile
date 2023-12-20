@@ -35,7 +35,7 @@ const AuthComponent = ({
       <AuthStack.Screen
         name="Signin"
         component={SigninComponent}
-        options={{}}
+        options={{title: 'Sign in'}}
       />
       <AuthStack.Screen
         name="VerifyAccount"

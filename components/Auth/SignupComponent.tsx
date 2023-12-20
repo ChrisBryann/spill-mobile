@@ -17,17 +17,17 @@ const SignupComponent = ({
   navigation,
 }: NativeStackScreenProps<AuthStackParamsList, 'Signup'>) => {
   return (
-    <SafeAreaView className="flex-1 bg-white">
-      <KeyboardAvoidingView
-        className="flex h-full items-center justify-between"
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+    <KeyboardAvoidingView
+      className="h-full"
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+      <SafeAreaView className="flex-1 bg-white items-center justify-between">
         {/* <Image
         source={OC_HIFIVE_IMG}
         className="w-3/4 h-2/6"
         resizeMode="contain"
       /> */}
         {/* <FontText style="text-4xl font-bold p-4">Be a part of spill.</FontText> */}
-        <View className="flex w-full items-center">
+        <View>
           <CustomInputField
             icon={<UserIcon color={'gray'} />}
             label="Name"
@@ -68,8 +68,8 @@ const SignupComponent = ({
             </FontText>
           </TouchableOpacity>
         </View>
-      </KeyboardAvoidingView>
-    </SafeAreaView>
+      </SafeAreaView>
+    </KeyboardAvoidingView>
   );
 };
 

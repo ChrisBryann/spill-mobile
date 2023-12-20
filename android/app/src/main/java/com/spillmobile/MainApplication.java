@@ -54,6 +54,7 @@ public class MainApplication extends Application implements ReactApplication {
   public void onCreate() {
     super.onCreate();
     ReactFontManager.getInstance().addCustomFont(this, "Quicksand", R.font.quicksand);
+    ReactFontManager.getInstance().addCustomFont(this, "Outfit", R.font.outfit);
     SoLoader.init(this, /* native exopackage */ false);
     if (BuildConfig.IS_NEW_ARCHITECTURE_ENABLED) {
       // If you opted-in for the New Architecture, we load the native entry point for this app.

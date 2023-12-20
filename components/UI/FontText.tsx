@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text} from 'react-native';
+import {StyleSheet, Text} from 'react-native';
 
 type Props = {
   children: React.ReactNode;
@@ -7,10 +7,14 @@ type Props = {
 };
 const FontText = ({children, style}: Props) => {
   return (
-    <Text className={`${style}`} style={{fontFamily: 'Quicksand'}}>
+    <Text className={`${style}`} style={FontTextStyles.text}>
       {children}
     </Text>
   );
 };
 
 export default FontText;
+
+export const FontTextStyles = StyleSheet.create({
+  text: {fontFamily: 'Outfit'},
+});

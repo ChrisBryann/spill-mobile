@@ -13,9 +13,6 @@ module.exports = {
         'expense-gray': '#484848',
         'error-red': '#FF8E87',
       },
-      fontFamily: {
-        quicksand: ['Quicksand'],
-      },
     },
   },
   plugins: [],

@@ -36,12 +36,12 @@ const VerifyAccountComponent = ({
   console.log(targetScreen);
 
   return (
-    <SafeAreaView className="flex-1 bg-white">
-      <KeyboardAvoidingView
-        className="h-full"
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+    <KeyboardAvoidingView
+      className="h-full"
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+      <SafeAreaView className="flex-1 bg-white">
         <View className="flex h-full items-center">
-          <FontText style="text-2xl font-bold text-green-800 p-2">
+          <FontText style="text-2xl font-bold text-green-800 p-2 pt-6">
             What's the code?
           </FontText>
           <FontText style="text-center text-gray-600 font-bold p-2">
@@ -87,8 +87,8 @@ const VerifyAccountComponent = ({
             </FontText>
           </TouchableOpacity>
         </View>
-      </KeyboardAvoidingView>
-    </SafeAreaView>
+      </SafeAreaView>
+    </KeyboardAvoidingView>
   );
 };
 

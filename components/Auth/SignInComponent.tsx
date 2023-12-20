@@ -1,8 +1,15 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
-import {Image, TextInput, TouchableOpacity, View} from 'react-native';
+import {
+  Image,
+  KeyboardAvoidingView,
+  Platform,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {AppStackParamsList, AuthStackParamsList} from '../../screen.types';
-import FontText from '../UI/FontText';
+import FontText, { FontTextStyles } from '../UI/FontText';
 import {EC_EASY_SHOPPING_IMG} from '../../assets/images';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
@@ -10,42 +17,44 @@ const SigninComponent = ({
   navigation,
 }: NativeStackScreenProps<AuthStackParamsList, 'Signin'>) => {
   return (
-    <SafeAreaView className="flex-1 my-6 justify-start items-center">
-      {/* <FontText style="text-4xl font-bold p-4"></FontText> */}
-      <Image
-        source={EC_EASY_SHOPPING_IMG}
-        className="w-3/4 h-2/5"
-        resizeMode="contain"
-      />
-      <View className="flex w-5/6">
-        <FontText style="font-bold text-4xl py-4">
-          Let's start splitting.
+    <KeyboardAvoidingView
+      className="h-full"
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+      <SafeAreaView className="flex-1 bg-white items-center">
+        <FontText style="text-2xl font-bold text-green-800 p-2 pt-6">
+          What's your number?
         </FontText>
-      </View>
-      <View className="flex w-5/6 my-1">
-        <FontText style="font-semibold py-2">Email</FontText>
-        <TextInput className="w-full rounded-md border-b border-gray-300 py-1" />
-      </View>
-      <View className="flex w-5/6 my-1">
-        <FontText style="font-semibold py-2">Password</FontText>
         <TextInput
-          secureTextEntry={true}
-          className="w-full rounded-md border-b border-gray-300 py-1"
+          className="text-3xl font-semibold px-6 pt-8 pb-10"
+          style={FontTextStyles.text}
+          placeholder="(000) 000-0000"
+          placeholderTextColor={'lightgray'}
+          inputMode="tel"
         />
-      </View>
-      <TouchableOpacity
-        className="p-4 w-5/6 bg-black rounded-full my-4 shadow-md"
-        onPress={() => navigation.navigate('Home')}>
-        <FontText style="font-bold text-center text-base-green text-md">
-          Sign In
+        <FontText style="text-center text-gray-600 font-bold px-6 pt-8 pb-8">
+          If you have an existing account, we'll send a confirmation code to
+          your number
         </FontText>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
-        <FontText style="text-blue-800 font-semibold">
-          Don't have an account? Sign up
-        </FontText>
-      </TouchableOpacity>
-    </SafeAreaView>
+        <TouchableOpacity
+          className="p-4 w-3/6 bg-green-900 rounded-full my-4 shadow-md"
+          // onPress={() => navigation.navigate('VerifyAccount' || 'Home')}
+        >
+          <FontText style="font-bold text-center text-white text-md">
+            Continue
+          </FontText>
+        </TouchableOpacity>
+        <TouchableOpacity
+          className="flex flex-row p-4"
+          onPress={() => {
+            // do something to confirm the account with phone number (use Firebase Auth)
+          }}>
+          <FontText style="font-semibold">Didn't receive the code? </FontText>
+          <FontText style="font-semibold underline text-green-600">
+            Resend code
+          </FontText>
+        </TouchableOpacity>
+      </SafeAreaView>
+    </KeyboardAvoidingView>
   );
 };
 

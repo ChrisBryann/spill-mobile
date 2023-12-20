@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import FontText from './FontText';
+import FontText, {FontTextStyles} from './FontText';
 
 type Props = {
   icon?: React.ReactNode;
@@ -43,10 +43,9 @@ const CustomInputField = ({
         {icon}
         <TextInput
           className={`w-4/6 font-semibold ${error && 'text-red-500'}`}
-          style={{fontFamily: 'Quicksand'}}
+          style={FontTextStyles.text}
           placeholder={placeholder ?? ''}
           placeholderTextColor={'gray'}
-          clearButtonMode="always"
           onChangeText={onValueChange}
           value={value}
           maxLength={maxLength}
