@@ -1,14 +1,14 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
 import {Image, TextInput, TouchableOpacity, View} from 'react-native';
-import {AppStackParamsList} from '../../types';
+import {AppStackParamsList, AuthStackParamsList} from '../../screen.types';
 import FontText from '../UI/FontText';
 import {EC_EASY_SHOPPING_IMG} from '../../assets/images';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
 const SigninComponent = ({
   navigation,
-}: NativeStackScreenProps<AppStackParamsList, 'Signin'>) => {
+}: NativeStackScreenProps<AuthStackParamsList, 'Signin'>) => {
   return (
     <SafeAreaView className="flex-1 my-6 justify-start items-center">
       {/* <FontText style="text-4xl font-bold p-4"></FontText> */}

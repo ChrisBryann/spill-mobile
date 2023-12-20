@@ -1,5 +1,5 @@
 import React from 'react';
-import {HomeTabParamsList} from '../../../types';
+import {HomeTabParamsList} from '../../../screen.types';
 import {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
 import FontText from '../../UI/FontText';
 import { SafeAreaView } from 'react-native-safe-area-context';

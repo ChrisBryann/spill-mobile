@@ -1,6 +1,6 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
-import {AppStackParamsList, HomeTabParamsList} from '../../types';
+import {AppStackParamsList, HomeTabParamsList} from '../../screen.types';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import DashboardComponent from './Dashboard/DashboardComponent';
 import ExpensesComponent from './Expenses/ExpensesComponent';
