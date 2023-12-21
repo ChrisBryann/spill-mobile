@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   InputModeOptions,
   TextInput,
@@ -8,16 +8,18 @@ import {
 import FontText, {FontTextStyles} from './FontText';
 
 type Props = {
-  icon?: React.ReactNode;
-  value?: string;
-  onValueChange: (text: string) => void;
+  value: string;
+  onValueChange: React.Dispatch<React.SetStateAction<string>>;
   label: string;
+  icon?: React.ReactNode;
   placeholder?: string;
   inputMode?: InputModeOptions;
   maxLength?: number;
   required?: boolean;
   description?: string;
   errorDescription?: string;
+  errorHandler?: (value: string) => boolean;
+  customValueDisplay?: (value: string, previousValue: string) => string;
 };
 
 const CustomInputField = ({
@@ -31,8 +33,19 @@ const CustomInputField = ({
   required,
   description,
   errorDescription,
+  errorHandler,
+  customValueDisplay,
 }: Props) => {
   const [error, setError] = useState<boolean>(false);
+
+  // check for any errors everytime value
+  useEffect(() => {
+    if (value?.length > 0) {
+      errorHandler && (errorHandler(value) ? setError(true) : setError(false));
+    } else {
+      setError(false);
+    }
+  }, [value, errorHandler]);
   return (
     <View className="py-2 space-y-1">
       <FontText style="font-semibold ">{label}</FontText>
@@ -42,19 +55,36 @@ const CustomInputField = ({
         } border ${error ? 'border-red-500' : 'border-gray-300'} rounded-lg`}>
         {icon}
         <TextInput
-          className={`w-4/6 font-semibold ${error && 'text-red-500'}`}
+          className={`w-4/6 font-semibold`}
           style={FontTextStyles.text}
           placeholder={placeholder ?? ''}
           placeholderTextColor={'gray'}
-          onChangeText={onValueChange}
-          value={value}
+          onChangeText={(val: string) => {
+            onValueChange((prev: string) =>
+              customValueDisplay ? customValueDisplay(val, prev) : val,
+            );
+          }}
+          value={customValueDisplay && value}
           maxLength={maxLength}
           inputMode={inputMode}
+          onBlur={
+            required
+              ? () => {
+                  !value && setError(true);
+                }
+              : (() => {
+                  console.log('in blur!');
+
+                  errorHandler &&
+                    (errorHandler(value) ? setError(true) : setError(false));
+                }) || undefined
+          }
         />
       </TouchableOpacity>
       {(!!description || !!errorDescription) && (
-        <FontText style={`text-xs font-semibold ${error && 'text-red-500'} `}>
-          {description ?? errorDescription}
+        <FontText
+          style={`text-xs font-semibold py-1 ${error && 'text-red-500'} `}>
+          {error ? errorDescription ?? description : description}
         </FontText>
       )}
     </View>
