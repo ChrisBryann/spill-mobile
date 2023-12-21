@@ -73,8 +73,6 @@ const CustomInputField = ({
                   !value && setError(true);
                 }
               : (() => {
-                  console.log('in blur!');
-
                   errorHandler &&
                     (errorHandler(value) ? setError(true) : setError(false));
                 }) || undefined

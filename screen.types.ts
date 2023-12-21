@@ -12,6 +12,7 @@ export type AuthStackParamsList = {
   Signin: undefined;
   VerifyAccount: {
     targetScreen: string;
+    phoneNumber: string;
   };
 };
 

@@ -1,5 +1,5 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import React from 'react';
+import React, {useState} from 'react';
 import {
   Image,
   KeyboardAvoidingView,
@@ -9,13 +9,15 @@ import {
   View,
 } from 'react-native';
 import {AppStackParamsList, AuthStackParamsList} from '../../screen.types';
-import FontText, { FontTextStyles } from '../UI/FontText';
+import FontText, {FontTextStyles} from '../UI/FontText';
 import {EC_EASY_SHOPPING_IMG} from '../../assets/images';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {formatPhoneNumber} from '../../store/utils';
 
 const SigninComponent = ({
   navigation,
 }: NativeStackScreenProps<AuthStackParamsList, 'Signin'>) => {
+  const [phoneNumber, setPhoneNumber] = useState<string>('');
   return (
     <KeyboardAvoidingView
       className="h-full"
@@ -29,6 +31,10 @@ const SigninComponent = ({
           style={FontTextStyles.text}
           placeholder="(000) 000-0000"
           placeholderTextColor={'lightgray'}
+          onChangeText={(val: string) => {
+            setPhoneNumber(prev => formatPhoneNumber(val, prev));
+          }}
+          value={phoneNumber}
           inputMode="tel"
         />
         <FontText style="text-center text-gray-600 font-bold px-6 pt-8 pb-8">
@@ -37,13 +43,17 @@ const SigninComponent = ({
         </FontText>
         <TouchableOpacity
           className="p-4 w-3/6 bg-green-900 rounded-full my-4 shadow-md"
-          // onPress={() => navigation.navigate('VerifyAccount' || 'Home')}
-        >
+          onPress={() =>
+            navigation.navigate('VerifyAccount', {
+              targetScreen: 'Home',
+              phoneNumber,
+            })
+          }>
           <FontText style="font-bold text-center text-white text-md">
             Continue
           </FontText>
         </TouchableOpacity>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           className="flex flex-row p-4"
           onPress={() => {
             // do something to confirm the account with phone number (use Firebase Auth)
@@ -52,7 +62,7 @@ const SigninComponent = ({
           <FontText style="font-semibold underline text-green-600">
             Resend code
           </FontText>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </SafeAreaView>
     </KeyboardAvoidingView>
   );

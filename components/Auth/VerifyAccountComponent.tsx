@@ -32,8 +32,7 @@ const VerifyAccountComponent = ({
     setValue,
   });
   // variable that holds the intended screen to navigate when code is verified successfully
-  const {targetScreen} = route.params;
-  console.log(targetScreen);
+  const {targetScreen, phoneNumber} = route.params;
 
   return (
     <KeyboardAvoidingView
@@ -45,7 +44,8 @@ const VerifyAccountComponent = ({
             What's the code?
           </FontText>
           <FontText style="text-center text-gray-600 font-bold p-2">
-            A 4-digit code was sent to {'\n(000) 000-0000'}
+            A 4-digit code was sent to {'\n'}
+            {phoneNumber}
           </FontText>
           <CodeField
             ref={ref}
