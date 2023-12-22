@@ -1,12 +1,18 @@
 import {PayloadAction, createSlice} from '@reduxjs/toolkit';
 import {RootState} from '../configureStore';
 
+export interface UserState {
+  user: string | null;
+}
+
+const initialState: UserState = {
+  user: null,
+};
+
 export const userSlice = createSlice({
   name: 'user',
   // `createSlice` will infer the state type from the `initialState` argument
-  initialState: {
-    user: null,
-  },
+  initialState,
   reducers: {
     setUser: (state, action: PayloadAction<string>) => {
       state.user = action.payload;
