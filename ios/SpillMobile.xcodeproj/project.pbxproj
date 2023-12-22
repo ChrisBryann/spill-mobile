@@ -8,26 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* SpillMobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* SpillMobileTests.m */; };
-		0C80B921A6F3F58F76C31292 /* libPods-SpillMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-SpillMobile.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		47ED9C6BC4AC42D38F32A1C4 /* Quicksand-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFB7BB5633E0470381241FBC /* Quicksand-Regular.ttf */; };
-		7699B88040F8A987B510C191 /* libPods-SpillMobile-SpillMobileTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-SpillMobile-SpillMobileTests.a */; };
-		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		9033CCE3F881415DA32FD705 /* Quicksand-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 904F871B058A418EA30403D9 /* Quicksand-Medium.ttf */; };
-		C13FC8A9CE3A4FE3B52DF3C9 /* Quicksand-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 575DC7842D9C46FE8C6FA491 /* Quicksand-SemiBold.ttf */; };
-		F50A47EAF34C4615A2957014 /* Quicksand-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 395743D037A44E15A49AE614 /* Quicksand-Bold.ttf */; };
-		F95A17573C184957ADE19ED4 /* Quicksand-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BF5338C90EB4C8A8019DC0C /* Quicksand-Light.ttf */; };
-		46D55AD5082946BCB57CE38B /* Outfit-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 452791B156F84AA8BA2EFEBE /* Outfit-Black.ttf */; };
-		FF95D9A9140944309671FC1B /* Outfit-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA14FD4693794288AEB82305 /* Outfit-Bold.ttf */; };
 		1DB524FB988C4A5195609814 /* Outfit-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C62AC23411E414D8E3CA584 /* Outfit-ExtraBold.ttf */; };
 		234DC5767B954BAAAB483F81 /* Outfit-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 69B526E503134FB5BE016AF3 /* Outfit-ExtraLight.ttf */; };
-		6DDA9D9BF3F746238DF6637A /* Outfit-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CED5360380794D5EB456B5A0 /* Outfit-Light.ttf */; };
-		820B400CCA384137B6BC9E09 /* Outfit-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7D4EDE2DA814B188D321287 /* Outfit-Medium.ttf */; };
-		A51B0AAE2F944A9296A32263 /* Outfit-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 509F5C7D38CD43CCB0424364 /* Outfit-Regular.ttf */; };
 		361A4DDC876B4EE4B86E649E /* Outfit-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A72BA278CC14F0BA632A049 /* Outfit-SemiBold.ttf */; };
 		418C4268CC334CD8854ED1B1 /* Outfit-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F56A6FFE48D448EEB95FA1E6 /* Outfit-Thin.ttf */; };
+		46D55AD5082946BCB57CE38B /* Outfit-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 452791B156F84AA8BA2EFEBE /* Outfit-Black.ttf */; };
+		63D26524E0FC49A2C93B65D2 /* libPods-SpillMobile-SpillMobileTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B91DD09BE10266ACBEAA118 /* libPods-SpillMobile-SpillMobileTests.a */; };
+		6640D9EC723437D753C831D5 /* libPods-SpillMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C699AB6B3558FB1A7B656790 /* libPods-SpillMobile.a */; };
+		6DDA9D9BF3F746238DF6637A /* Outfit-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CED5360380794D5EB456B5A0 /* Outfit-Light.ttf */; };
+		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		820B400CCA384137B6BC9E09 /* Outfit-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7D4EDE2DA814B188D321287 /* Outfit-Medium.ttf */; };
+		A51B0AAE2F944A9296A32263 /* Outfit-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 509F5C7D38CD43CCB0424364 /* Outfit-Regular.ttf */; };
+		FF95D9A9140944309671FC1B /* Outfit-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA14FD4693794288AEB82305 /* Outfit-Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,34 +39,34 @@
 		00E356EE1AD99517003FC87E /* SpillMobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpillMobileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* SpillMobileTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpillMobileTests.m; sourceTree = "<group>"; };
-		0BF5338C90EB4C8A8019DC0C /* Quicksand-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Quicksand-Light.ttf"; path = "../assets/fonts/Quicksand-Light.ttf"; sourceTree = "<group>"; };
+		0A72BA278CC14F0BA632A049 /* Outfit-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Outfit-SemiBold.ttf"; path = "../assets/fonts/Outfit-SemiBold.ttf"; sourceTree = "<group>"; };
+		0BF5338C90EB4C8A8019DC0C /* Quicksand-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Quicksand-Light.ttf"; path = "../assets/fonts/Quicksand-Light.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* SpillMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpillMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = SpillMobile/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = SpillMobile/AppDelegate.mm; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = SpillMobile/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = SpillMobile/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = SpillMobile/main.m; sourceTree = "<group>"; };
-		19F6CBCC0A4E27FBF8BF4A61 /* libPods-SpillMobile-SpillMobileTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SpillMobile-SpillMobileTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		395743D037A44E15A49AE614 /* Quicksand-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Quicksand-Bold.ttf"; path = "../assets/fonts/Quicksand-Bold.ttf"; sourceTree = "<group>"; };
-		3B4392A12AC88292D35C810B /* Pods-SpillMobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpillMobile.debug.xcconfig"; path = "Target Support Files/Pods-SpillMobile/Pods-SpillMobile.debug.xcconfig"; sourceTree = "<group>"; };
-		5709B34CF0A7D63546082F79 /* Pods-SpillMobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpillMobile.release.xcconfig"; path = "Target Support Files/Pods-SpillMobile/Pods-SpillMobile.release.xcconfig"; sourceTree = "<group>"; };
-		575DC7842D9C46FE8C6FA491 /* Quicksand-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Quicksand-SemiBold.ttf"; path = "../assets/fonts/Quicksand-SemiBold.ttf"; sourceTree = "<group>"; };
-		5B7EB9410499542E8C5724F5 /* Pods-SpillMobile-SpillMobileTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpillMobile-SpillMobileTests.debug.xcconfig"; path = "Target Support Files/Pods-SpillMobile-SpillMobileTests/Pods-SpillMobile-SpillMobileTests.debug.xcconfig"; sourceTree = "<group>"; };
-		5DCACB8F33CDC322A6C60F78 /* libPods-SpillMobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SpillMobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F1188F73C3CE6D5B5D39E66 /* Pods-SpillMobile-SpillMobileTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpillMobile-SpillMobileTests.release.xcconfig"; path = "Target Support Files/Pods-SpillMobile-SpillMobileTests/Pods-SpillMobile-SpillMobileTests.release.xcconfig"; sourceTree = "<group>"; };
+		395743D037A44E15A49AE614 /* Quicksand-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Quicksand-Bold.ttf"; path = "../assets/fonts/Quicksand-Bold.ttf"; sourceTree = "<group>"; };
+		3B7475A519EF693E3A4D779E /* Pods-SpillMobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpillMobile.debug.xcconfig"; path = "Target Support Files/Pods-SpillMobile/Pods-SpillMobile.debug.xcconfig"; sourceTree = "<group>"; };
+		452791B156F84AA8BA2EFEBE /* Outfit-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Outfit-Black.ttf"; path = "../assets/fonts/Outfit-Black.ttf"; sourceTree = "<group>"; };
+		4C62AC23411E414D8E3CA584 /* Outfit-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Outfit-ExtraBold.ttf"; path = "../assets/fonts/Outfit-ExtraBold.ttf"; sourceTree = "<group>"; };
+		509F5C7D38CD43CCB0424364 /* Outfit-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Outfit-Regular.ttf"; path = "../assets/fonts/Outfit-Regular.ttf"; sourceTree = "<group>"; };
+		575DC7842D9C46FE8C6FA491 /* Quicksand-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Quicksand-SemiBold.ttf"; path = "../assets/fonts/Quicksand-SemiBold.ttf"; sourceTree = "<group>"; };
+		69B526E503134FB5BE016AF3 /* Outfit-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Outfit-ExtraLight.ttf"; path = "../assets/fonts/Outfit-ExtraLight.ttf"; sourceTree = "<group>"; };
+		6B91DD09BE10266ACBEAA118 /* libPods-SpillMobile-SpillMobileTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SpillMobile-SpillMobileTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		735CC5BADEA25FBB67BC1F04 /* Pods-SpillMobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpillMobile.release.xcconfig"; path = "Target Support Files/Pods-SpillMobile/Pods-SpillMobile.release.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = SpillMobile/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		89C6BE57DB24E9ADA2F236DE /* Pods-SpillMobile-SpillMobileTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpillMobile-SpillMobileTests.release.xcconfig"; path = "Target Support Files/Pods-SpillMobile-SpillMobileTests/Pods-SpillMobile-SpillMobileTests.release.xcconfig"; sourceTree = "<group>"; };
-		904F871B058A418EA30403D9 /* Quicksand-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Quicksand-Medium.ttf"; path = "../assets/fonts/Quicksand-Medium.ttf"; sourceTree = "<group>"; };
-		AFB7BB5633E0470381241FBC /* Quicksand-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Quicksand-Regular.ttf"; path = "../assets/fonts/Quicksand-Regular.ttf"; sourceTree = "<group>"; };
+		904F871B058A418EA30403D9 /* Quicksand-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Quicksand-Medium.ttf"; path = "../assets/fonts/Quicksand-Medium.ttf"; sourceTree = "<group>"; };
+		A7D4EDE2DA814B188D321287 /* Outfit-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Outfit-Medium.ttf"; path = "../assets/fonts/Outfit-Medium.ttf"; sourceTree = "<group>"; };
+		AFB7BB5633E0470381241FBC /* Quicksand-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Quicksand-Regular.ttf"; path = "../assets/fonts/Quicksand-Regular.ttf"; sourceTree = "<group>"; };
+		C699AB6B3558FB1A7B656790 /* libPods-SpillMobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SpillMobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CED5360380794D5EB456B5A0 /* Outfit-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Outfit-Light.ttf"; path = "../assets/fonts/Outfit-Light.ttf"; sourceTree = "<group>"; };
+		D28C4569FDD677908854AFB5 /* Pods-SpillMobile-SpillMobileTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpillMobile-SpillMobileTests.debug.xcconfig"; path = "Target Support Files/Pods-SpillMobile-SpillMobileTests/Pods-SpillMobile-SpillMobileTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		452791B156F84AA8BA2EFEBE /* Outfit-Black.ttf */ = {isa = PBXFileReference; name = "Outfit-Black.ttf"; path = "../assets/fonts/Outfit-Black.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		FA14FD4693794288AEB82305 /* Outfit-Bold.ttf */ = {isa = PBXFileReference; name = "Outfit-Bold.ttf"; path = "../assets/fonts/Outfit-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		4C62AC23411E414D8E3CA584 /* Outfit-ExtraBold.ttf */ = {isa = PBXFileReference; name = "Outfit-ExtraBold.ttf"; path = "../assets/fonts/Outfit-ExtraBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		69B526E503134FB5BE016AF3 /* Outfit-ExtraLight.ttf */ = {isa = PBXFileReference; name = "Outfit-ExtraLight.ttf"; path = "../assets/fonts/Outfit-ExtraLight.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		CED5360380794D5EB456B5A0 /* Outfit-Light.ttf */ = {isa = PBXFileReference; name = "Outfit-Light.ttf"; path = "../assets/fonts/Outfit-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		A7D4EDE2DA814B188D321287 /* Outfit-Medium.ttf */ = {isa = PBXFileReference; name = "Outfit-Medium.ttf"; path = "../assets/fonts/Outfit-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		509F5C7D38CD43CCB0424364 /* Outfit-Regular.ttf */ = {isa = PBXFileReference; name = "Outfit-Regular.ttf"; path = "../assets/fonts/Outfit-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		0A72BA278CC14F0BA632A049 /* Outfit-SemiBold.ttf */ = {isa = PBXFileReference; name = "Outfit-SemiBold.ttf"; path = "../assets/fonts/Outfit-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		F56A6FFE48D448EEB95FA1E6 /* Outfit-Thin.ttf */ = {isa = PBXFileReference; name = "Outfit-Thin.ttf"; path = "../assets/fonts/Outfit-Thin.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F56A6FFE48D448EEB95FA1E6 /* Outfit-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Outfit-Thin.ttf"; path = "../assets/fonts/Outfit-Thin.ttf"; sourceTree = "<group>"; };
+		FA14FD4693794288AEB82305 /* Outfit-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Outfit-Bold.ttf"; path = "../assets/fonts/Outfit-Bold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,7 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7699B88040F8A987B510C191 /* libPods-SpillMobile-SpillMobileTests.a in Frameworks */,
+				63D26524E0FC49A2C93B65D2 /* libPods-SpillMobile-SpillMobileTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,7 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C80B921A6F3F58F76C31292 /* libPods-SpillMobile.a in Frameworks */,
+				6640D9EC723437D753C831D5 /* libPods-SpillMobile.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,8 +123,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				5DCACB8F33CDC322A6C60F78 /* libPods-SpillMobile.a */,
-				19F6CBCC0A4E27FBF8BF4A61 /* libPods-SpillMobile-SpillMobileTests.a */,
+				C699AB6B3558FB1A7B656790 /* libPods-SpillMobile.a */,
+				6B91DD09BE10266ACBEAA118 /* libPods-SpillMobile-SpillMobileTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -169,10 +164,10 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3B4392A12AC88292D35C810B /* Pods-SpillMobile.debug.xcconfig */,
-				5709B34CF0A7D63546082F79 /* Pods-SpillMobile.release.xcconfig */,
-				5B7EB9410499542E8C5724F5 /* Pods-SpillMobile-SpillMobileTests.debug.xcconfig */,
-				89C6BE57DB24E9ADA2F236DE /* Pods-SpillMobile-SpillMobileTests.release.xcconfig */,
+				3B7475A519EF693E3A4D779E /* Pods-SpillMobile.debug.xcconfig */,
+				735CC5BADEA25FBB67BC1F04 /* Pods-SpillMobile.release.xcconfig */,
+				D28C4569FDD677908854AFB5 /* Pods-SpillMobile-SpillMobileTests.debug.xcconfig */,
+				1F1188F73C3CE6D5B5D39E66 /* Pods-SpillMobile-SpillMobileTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -196,7 +191,6 @@
 				F56A6FFE48D448EEB95FA1E6 /* Outfit-Thin.ttf */,
 			);
 			name = Resources;
-			path = "";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -206,12 +200,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "SpillMobileTests" */;
 			buildPhases = (
-				A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */,
+				550DC25E8B7C2BDDD0316AE6 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				C59DA0FBD6956966B86A3779 /* [CP] Embed Pods Frameworks */,
-				F6A41C54EA430FDDC6A6ED99 /* [CP] Copy Pods Resources */,
+				91CDBA04CE9DCC940AC85AA6 /* [CP] Embed Pods Frameworks */,
+				F22CA0B3D2178C5006C6E6B1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -227,14 +221,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "SpillMobile" */;
 			buildPhases = (
-				C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */,
+				E80BB7CDC2B47C8B10E9D427 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */,
-				E235C05ADACE081382539298 /* [CP] Copy Pods Resources */,
+				4B28F242CD8B318CC9D7ABD1 /* [CP] Embed Pods Frameworks */,
+				D35AA3AF8E93396603C7794A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -295,11 +289,6 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				F50A47EAF34C4615A2957014 /* Quicksand-Bold.ttf in Resources */,
-				F95A17573C184957ADE19ED4 /* Quicksand-Light.ttf in Resources */,
-				9033CCE3F881415DA32FD705 /* Quicksand-Medium.ttf in Resources */,
-				47ED9C6BC4AC42D38F32A1C4 /* Quicksand-Regular.ttf in Resources */,
-				C13FC8A9CE3A4FE3B52DF3C9 /* Quicksand-SemiBold.ttf in Resources */,
 				46D55AD5082946BCB57CE38B /* Outfit-Black.ttf in Resources */,
 				FF95D9A9140944309671FC1B /* Outfit-Bold.ttf in Resources */,
 				1DB524FB988C4A5195609814 /* Outfit-ExtraBold.ttf in Resources */,
@@ -331,7 +320,7 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */ = {
+		4B28F242CD8B318CC9D7ABD1 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -348,7 +337,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SpillMobile/Pods-SpillMobile-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */ = {
+		550DC25E8B7C2BDDD0316AE6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -370,7 +359,41 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */ = {
+		91CDBA04CE9DCC940AC85AA6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SpillMobile-SpillMobileTests/Pods-SpillMobile-SpillMobileTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SpillMobile-SpillMobileTests/Pods-SpillMobile-SpillMobileTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SpillMobile-SpillMobileTests/Pods-SpillMobile-SpillMobileTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D35AA3AF8E93396603C7794A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SpillMobile/Pods-SpillMobile-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SpillMobile/Pods-SpillMobile-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SpillMobile/Pods-SpillMobile-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E80BB7CDC2B47C8B10E9D427 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -392,41 +415,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C59DA0FBD6956966B86A3779 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SpillMobile-SpillMobileTests/Pods-SpillMobile-SpillMobileTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SpillMobile-SpillMobileTests/Pods-SpillMobile-SpillMobileTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SpillMobile-SpillMobileTests/Pods-SpillMobile-SpillMobileTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E235C05ADACE081382539298 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SpillMobile/Pods-SpillMobile-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SpillMobile/Pods-SpillMobile-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SpillMobile/Pods-SpillMobile-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F6A41C54EA430FDDC6A6ED99 /* [CP] Copy Pods Resources */ = {
+		F22CA0B3D2178C5006C6E6B1 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -495,7 +484,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-SpillMobile-SpillMobileTests.debug.xcconfig */;
+			baseConfigurationReference = D28C4569FDD677908854AFB5 /* Pods-SpillMobile-SpillMobileTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -522,7 +511,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 89C6BE57DB24E9ADA2F236DE /* Pods-SpillMobile-SpillMobileTests.release.xcconfig */;
+			baseConfigurationReference = 1F1188F73C3CE6D5B5D39E66 /* Pods-SpillMobile-SpillMobileTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -546,7 +535,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B4392A12AC88292D35C810B /* Pods-SpillMobile.debug.xcconfig */;
+			baseConfigurationReference = 3B7475A519EF693E3A4D779E /* Pods-SpillMobile.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -573,7 +562,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5709B34CF0A7D63546082F79 /* Pods-SpillMobile.release.xcconfig */;
+			baseConfigurationReference = 735CC5BADEA25FBB67BC1F04 /* Pods-SpillMobile.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
