@@ -26,6 +26,7 @@ const persistedRootReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
   reducer: persistedRootReducer,
+  // firebase by default has persistance via AsyncStorage in react native
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
