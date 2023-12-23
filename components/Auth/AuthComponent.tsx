@@ -5,7 +5,7 @@ import {
 } from '@react-navigation/native-stack';
 import {AppStackParamsList, AuthStackParamsList} from '../../screen.types';
 import SignupComponent from './SignupComponent';
-import SigninComponent from './SigninComponent';
+import SigninComponent from './SignInComponent';
 import {TouchableOpacity} from 'react-native';
 import {ChevronLeftIcon} from 'react-native-heroicons/outline';
 import CustomHeaderTitle from '../UI/CustomHeaderTitle';
