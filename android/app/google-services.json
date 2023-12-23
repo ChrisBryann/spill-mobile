@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "772176048598",
+    "project_id": "spill-app-76ebc",
+    "storage_bucket": "spill-app-76ebc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:772176048598:android:89a7323c5adac52156f477",
+        "android_client_info": {
+          "package_name": "com.spillmobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "772176048598-ialhfet9on7s853edopud47nq3o9pa1s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.spillmobile",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "772176048598-4buak33ki6cnq4qlpna6tfieh2pve7sl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzvE0KttZN9jTxPQSkgXmBvu13zpuJaJE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "772176048598-4buak33ki6cnq4qlpna6tfieh2pve7sl.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "772176048598-rtktvjmflqqqm3egvb5ek3fviiqjpdu3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.SpillMobile"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
