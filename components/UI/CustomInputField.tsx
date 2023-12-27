@@ -6,6 +6,7 @@ import {
   View,
 } from 'react-native';
 import FontText, {FontTextStyles} from './FontText';
+import {EyeIcon, EyeSlashIcon} from 'react-native-heroicons/solid';
 
 type Props = {
   value: string;
@@ -18,6 +19,7 @@ type Props = {
   required?: boolean;
   description?: string;
   errorDescription?: string;
+  secured?: boolean;
   errorHandler?: (value: string) => boolean;
   customValueDisplay?: (value: string, previousValue: string) => string;
 };
@@ -33,10 +35,15 @@ const CustomInputField = ({
   required,
   description,
   errorDescription,
+  secured,
   errorHandler,
   customValueDisplay,
 }: Props) => {
   const [error, setError] = useState<boolean>(false);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
 
   // check for any errors everytime value
   useEffect(() => {
@@ -48,14 +55,14 @@ const CustomInputField = ({
   }, [value, errorHandler]);
   return (
     <View className="py-2 space-y-1">
-      <FontText style="font-semibold ">{label}</FontText>
-      <TouchableOpacity
+      <FontText style="font-medium ">{label}</FontText>
+      <View
         className={`flex flex-row space-x-2 p-2 ${
           error ? 'bg-red-50' : 'bg-gray-100'
         } border ${error ? 'border-red-500' : 'border-gray-300'} rounded-lg`}>
         {icon}
         <TextInput
-          className={`w-4/6 font-semibold`}
+          className="w-4/6 grow"
           style={FontTextStyles.text}
           placeholder={placeholder ?? ''}
           placeholderTextColor={'gray'}
@@ -67,6 +74,7 @@ const CustomInputField = ({
           value={customValueDisplay && value}
           maxLength={maxLength}
           inputMode={inputMode}
+          secureTextEntry={secured && !showPassword}
           onBlur={
             required
               ? () => {
@@ -78,10 +86,16 @@ const CustomInputField = ({
                 }) || undefined
           }
         />
-      </TouchableOpacity>
-      {(!!description || !!errorDescription) && (
+        {secured &&
+          (showPassword ? (
+            <EyeIcon onPress={toggleShowPassword} color={'gray'} />
+          ) : (
+            <EyeSlashIcon onPress={toggleShowPassword} color={'gray'} />
+          ))}
+      </View>
+      {(!!description || (!!errorDescription && error)) && (
         <FontText
-          style={`text-xs font-semibold py-1 ${error && 'text-red-500'} `}>
+          style={`text-xs py-1 ${error && 'text-red-500'} `}>
           {error ? errorDescription ?? description : description}
         </FontText>
       )}

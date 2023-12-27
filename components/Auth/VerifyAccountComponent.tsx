@@ -16,23 +16,85 @@ import {
   useBlurOnFulfill,
   useClearByFocusCell,
 } from 'react-native-confirmation-code-field';
-import {AuthStackParamsList} from '../../screen.types';
+import {AppStackParamsList, AuthStackParamsList} from '../../screen.types';
 import FontText from '../UI/FontText';
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
+import {CompositeScreenProps} from '@react-navigation/native';
 
-const CELL_COUNT = 4;
+const CELL_COUNT = 6;
 
 const VerifyAccountComponent = ({
   navigation,
   route,
-}: NativeStackScreenProps<AuthStackParamsList, 'VerifyAccount'>) => {
-  const [value, setValue] = useState('');
-  const ref = useBlurOnFulfill({value, cellCount: CELL_COUNT});
+}: CompositeScreenProps<
+  NativeStackScreenProps<AuthStackParamsList, 'VerifyAccount'>,
+  NativeStackScreenProps<AppStackParamsList>
+>) => {
+  const [code, setCode] = useState<string>('');
+  const ref = useBlurOnFulfill({value: code, cellCount: CELL_COUNT});
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
-    value,
-    setValue,
+    value: code,
+    setValue: setCode,
   });
   // variable that holds the intended screen to navigate when code is verified successfully
-  const {targetScreen, phoneNumber} = route.params;
+  const {previousScreen, phoneNumber, verificationId, fullName, userName} =
+    route.params;
+
+  const onVerify = () => {
+    // create a phone auth credentials with the OTP code and verificationId
+    console.log(code);
+
+    const phoneCredentials = auth.PhoneAuthProvider.credential(
+      verificationId,
+      code,
+    );
+
+    // try signing in with the phone credentials
+    auth()
+      .signInWithCredential(phoneCredentials)
+      .then(user => {
+        if (previousScreen === 'Signup') {
+          // sign up successful, set a new user in users collection with the auto generated id
+          // sign up assumes the full name and username is passed down to this screen
+
+          firestore()
+            .collection('users')
+            .doc(user.user.uid)
+            .set({
+              name: fullName!,
+              username: userName!,
+              phoneNumber: phoneNumber.replaceAll('[()\\s-]+', '').trim(),
+            });
+        }
+        // if we sign in, then we just let onAuthStateChanged get the user id
+        // navigate to the home screen once successful
+        navigation.navigate('Home');
+      })
+      .catch(error => {
+        if (error.code === 'auth/invalid-verification-code') {
+          Toast.show({
+            type: 'error',
+            text1: 'Invalid code!',
+            text2: 'Please enter the correct verification code.',
+          });
+          console.log('Invalid verficiation code');
+        } else if (error.code === 'auth/user-disabled') {
+          Toast.show({
+            type: 'error',
+            text1: 'User is disabled!',
+          });
+          console.log('User is disabled.');
+        } else {
+          Toast.show({
+            type: 'error',
+            text1: 'Unable to sign in!',
+            text2: 'Make sure you have a stable connection.',
+          });
+          console.log('Unable to sign in with credentials', error);
+        }
+      });
+  };
 
   return (
     <KeyboardAvoidingView
@@ -40,18 +102,19 @@ const VerifyAccountComponent = ({
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <SafeAreaView className="flex-1 bg-white">
         <View className="flex h-full items-center">
-          <FontText style="text-2xl font-bold text-green-800 p-2 pt-6">
+          <FontText style="text-2xl font-semibold text-green-800 p-2 pt-6">
             What's the code?
           </FontText>
-          <FontText style="text-center text-gray-600 font-bold p-2">
-            A 4-digit code was sent to {'\n'}
+          <FontText style="text-center text-gray-600 font-medium p-2">
+            A 6-digit code was sent to {'\n'}
+            {/* {email} */}
             {phoneNumber}
           </FontText>
           <CodeField
             ref={ref}
             {...props}
-            value={value}
-            onChangeText={setValue}
+            value={code}
+            onChangeText={setCode}
             cellCount={CELL_COUNT}
             rootStyle={styles.codeFiledRoot}
             keyboardType="number-pad"
@@ -68,21 +131,28 @@ const VerifyAccountComponent = ({
               </View>
             )}
           />
-          <TouchableOpacity
+          {/* Not a good implementation of resend code. Here's why: 
+          https://stackoverflow.com/questions/76911441/how-to-regenerate-a-new-verification-code-after-resend-button-click-in-firebase */}
+          {/* <TouchableOpacity
             className="flex flex-row p-2"
             onPress={() => {
               // do something to get the OTP code again (use Firebase Auth)
             }}>
-            <FontText style="font-semibold">Didn't receive the code? </FontText>
-            <FontText style="font-semibold underline text-green-600">
+            <FontText style="font-medium">Didn't receive the code? </FontText>
+            <FontText style="font-medium underline text-green-600">
               Resend code
             </FontText>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
           <TouchableOpacity
-            className="p-4 w-3/6 bg-green-900 rounded-full my-4 shadow-md"
-            // onPress={() => navigation.navigate('VerifyAccount' || 'Home')}
-          >
-            <FontText style="font-bold text-center text-white text-md">
+            disabled={code.length !== CELL_COUNT}
+            className={`p-4 w-3/6 ${
+              code.length === CELL_COUNT ? 'bg-green-900' : 'bg-gray-200'
+            } rounded-full my-4`}
+            onPress={onVerify}>
+            <FontText
+              style={`font-medium text-center ${
+                code.length === CELL_COUNT ? 'text-white' : 'text-gray-500'
+              } text-md`}>
               Verify
             </FontText>
           </TouchableOpacity>
@@ -104,7 +174,7 @@ const styles = StyleSheet.create({
     marginRight: 'auto',
   },
   cellRoot: {
-    width: 60,
+    width: 40,
     height: 70,
     justifyContent: 'center',
     alignItems: 'center',
@@ -115,6 +185,7 @@ const styles = StyleSheet.create({
     color: '#000',
     fontSize: 36,
     textAlign: 'center',
+    fontFamily: 'Outfit',
   },
   focusCell: {
     borderBottomColor: '#014737',

@@ -7,7 +7,7 @@ type Props = {
 };
 
 const CustomHeaderTitle = ({children}: Props) => (
-  <FontText style="font-bold text-lg">{children}</FontText>
+  <FontText style="font-medium text-lg">{children}</FontText>
 );
 
 export default CustomHeaderTitle;

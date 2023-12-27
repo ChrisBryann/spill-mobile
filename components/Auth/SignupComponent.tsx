@@ -9,9 +9,17 @@ import FontText from '../UI/FontText';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {AuthStackParamsList} from '../../screen.types';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {AtSymbolIcon, PhoneIcon, UserIcon} from 'react-native-heroicons/solid';
+import {
+  AtSymbolIcon,
+  // LockClosedIcon,
+  PhoneIcon,
+  UserIcon,
+} from 'react-native-heroicons/solid';
 import CustomInputField from '../UI/CustomInputField';
-import { formatPhoneNumber } from '../../store/utils';
+import {formatPhoneNumber} from '../../utils/utils';
+import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
+import Toast from 'react-native-toast-message';
 
 const SignupComponent = ({
   navigation,
@@ -27,16 +35,123 @@ const SignupComponent = ({
     // check if this phone number already have an account associated with
     return val.length !== 14;
   };
+
+  // const [email, setEmail] = useState<string>('');
+  // const [emailErrorDescription, setEmailErrorDescription] =
+  //   useState<string>('');
+  // const emailErrorHandler = (val: string) => {
+  //   return !val.includes('@');
+  // };
+  // const [password, setPassword] = useState<string>('');
+  // const passwordErrorHandler = (val: string) => {
+  //   //Minimum 12 characters, at least one uppercase letter, one lowercase letter, one number and one special character:
+  //   return !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[_@$!%*?&])[A-Za-z\d_@$!%*?&]{12,}$/.test(
+  //     val,
+  //   );
+  // };
+
   const [infoVerified, setInfoVerified] = useState<boolean>(false);
+
+  const onSubmit = () => {
+    // create new user account in Firebase
+    // check if user exists already, i.e.: if there is an account with the given phone number
+    firestore()
+      .collection('users')
+      .where(
+        'phoneNumber',
+        '==',
+        phoneNumber.replaceAll('[()\\s-]+', '').trim(),
+      )
+      .get()
+      .then(querySnapshot => {
+        if (!querySnapshot.empty) {
+          // user already exists, set toast
+          Toast.show({
+            type: 'error',
+            text1: 'User already exists with this phone number!',
+            text2: 'Please use another phone number to sign up.',
+          });
+          return;
+        }
+
+        // set loading or something to change status
+
+        // start verifying the phone number
+        auth()
+          .verifyPhoneNumber(
+            `+1${phoneNumber.replaceAll('[()\\s-]+', '').trim()}`,
+          )
+          .on(
+            'state_changed',
+            phoneAuthSnapshot => {
+              switch (phoneAuthSnapshot.state) {
+                case auth.PhoneAuthState.CODE_SENT:
+                  // // set toast to indicate confirmation sent
+                  // Toast.show({
+                  //   type: 'success',
+                  //   text1: 'Code sent!',
+                  //   text2: 'Please check your messages for a verfication code.',
+                  // });
+                  console.log(
+                    'Verification code sent',
+                    JSON.stringify(phoneAuthSnapshot),
+                  );
+
+                  // navigate to the verifying screen
+                  navigation.navigate('VerifyAccount', {
+                    previousScreen: 'Signup',
+                    // email,
+                    phoneNumber,
+                    verificationId: phoneAuthSnapshot.verificationId,
+                    fullName,
+                    userName: username,
+                  });
+                  break;
+                case auth.PhoneAuthState.ERROR:
+                  // error sending code
+                  Toast.show({
+                    type: 'error',
+                    text1: 'Unable to send code!',
+                    text2: 'Make sure the phone number entered is correct.',
+                  });
+                  console.log(
+                    'Verification error: ',
+                    JSON.stringify(phoneAuthSnapshot),
+                  );
+                // set toast
+              }
+            },
+            error => {
+              Toast.show({
+                type: 'error',
+                text1: 'Unable to verify phone number!',
+                text2: 'Make sure the phone number entered is correct.',
+              });
+              console.log('Error verifying phone number', error);
+            },
+          );
+      })
+      .catch(error => {
+        Toast.show({
+          type: 'error',
+          text1: 'Unable to sign up!',
+          text2: 'Make sure you have a stable connection.',
+        });
+        console.log('Error during firebase operation', JSON.stringify(error));
+      });
+  };
+
   useEffect(() => {
     fullName &&
-    username &&
-    !usernameErrorHandler(username) &&
+    // email &&
+    // !emailErrorHandler(email) &&
+    // password &&
+    // !passwordErrorHandler(password)
     phoneNumber &&
     !phoneErrorHandler(phoneNumber)
       ? setInfoVerified(true)
       : setInfoVerified(false);
-  }, [fullName, username, phoneNumber]);
+  }, [fullName, phoneNumber]);
 
   return (
     <KeyboardAvoidingView
@@ -58,6 +173,33 @@ const SignupComponent = ({
             onValueChange={setFullName}
             required
           />
+          {/* <CustomInputField
+            icon={<AtSymbolIcon color={'gray'} />}
+            value={email}
+            label="Email"
+            onValueChange={setEmail}
+            placeholder="Email"
+            errorHandler={emailErrorHandler}
+            required
+            errorDescription="Please enter a valid email"
+          />
+          <CustomInputField
+            icon={<LockClosedIcon color={'gray'} />}
+            value={password}
+            label="Password"
+            onValueChange={setPassword}
+            placeholder="Password"
+            errorHandler={passwordErrorHandler}
+            required
+            secured
+            errorDescription="Please enter a valid password"
+            description={`- At least 12 characters.
+- At least one uppercase letter.
+- At least one lowercase letter.
+- At least one number.
+- At least one special character (_, @, $, !, %, *,?, &).
+            `}
+          /> */}
           <CustomInputField
             icon={<AtSymbolIcon color={'gray'} />}
             label="Username"
@@ -89,16 +231,10 @@ const SignupComponent = ({
             disabled={!infoVerified}
             className={`p-4 w-5/6 ${
               infoVerified ? ' bg-green-900' : 'bg-gray-200'
-            } rounded-full my-4 shadow-md `}
-            onPress={() =>
-              // create new user account with phone number as ID in Firebase
-              navigation.navigate('VerifyAccount', {
-                targetScreen: 'Signin',
-                phoneNumber,
-              })
-            }>
+            } rounded-full my-4 `}
+            onPress={onSubmit}>
             <FontText
-              style={`font-bold text-center ${
+              style={`font-medium text-center ${
                 infoVerified ? 'text-white' : 'text-gray-500'
               } text-md `}>
               Create a new account
@@ -107,8 +243,8 @@ const SignupComponent = ({
           <TouchableOpacity
             className="flex flex-row"
             onPress={() => navigation.navigate('Signin')}>
-            <FontText style="font-semibold">Already have an account? </FontText>
-            <FontText style="font-semibold text-green-600">
+            <FontText style="font-medium">Already have an account? </FontText>
+            <FontText style="font-medium text-green-600">
               Sign in instead
             </FontText>
           </TouchableOpacity>
