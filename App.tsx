@@ -20,6 +20,7 @@ import {useAppDispatch, useAppSelector} from './store/hooks';
 import {clearUser, selectUser, setUser} from './store/User/userSlice';
 import auth from '@react-native-firebase/auth';
 import Toast from 'react-native-toast-message';
+
 // import {useColorScheme} from 'nativewind';
 
 const AppStack = createNativeStackNavigator<AppStackParamsList>();
