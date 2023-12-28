@@ -20,10 +20,13 @@ import {formatPhoneNumber} from '../../utils/utils';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 import Toast from 'react-native-toast-message';
+import CustomLoadingOverlay from '../UI/CustomLoadingOverlay';
 
 const SignupComponent = ({
   navigation,
 }: NativeStackScreenProps<AuthStackParamsList, 'Signup'>) => {
+  const [loading, setLoading] = useState<boolean>(false);
+
   const [fullName, setFullName] = useState<string>('');
   const [username, setUsername] = useState<string>('');
   const usernameErrorHandler = (val: string) => {
@@ -55,6 +58,7 @@ const SignupComponent = ({
   const onSubmit = () => {
     // create new user account in Firebase
     // check if user exists already, i.e.: if there is an account with the given phone number
+    setLoading(true);
     firestore()
       .collection('users')
       .where(
@@ -138,6 +142,9 @@ const SignupComponent = ({
           text2: 'Make sure you have a stable connection.',
         });
         console.log('Error during firebase operation', JSON.stringify(error));
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -153,7 +160,9 @@ const SignupComponent = ({
       : setInfoVerified(false);
   }, [fullName, phoneNumber]);
 
-  return (
+  return loading ? (
+    <CustomLoadingOverlay />
+  ) : (
     <KeyboardAvoidingView
       className="h-full"
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>

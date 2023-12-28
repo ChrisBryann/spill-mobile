@@ -21,6 +21,8 @@ import FontText from '../UI/FontText';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import {CompositeScreenProps} from '@react-navigation/native';
+import CustomLoadingOverlay from '../UI/CustomLoadingOverlay';
+import Toast from 'react-native-toast-message';
 
 const CELL_COUNT = 6;
 
@@ -31,6 +33,8 @@ const VerifyAccountComponent = ({
   NativeStackScreenProps<AuthStackParamsList, 'VerifyAccount'>,
   NativeStackScreenProps<AppStackParamsList>
 >) => {
+  const [loading, setLoading] = useState<boolean>(false);
+
   const [code, setCode] = useState<string>('');
   const ref = useBlurOnFulfill({value: code, cellCount: CELL_COUNT});
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
@@ -43,7 +47,7 @@ const VerifyAccountComponent = ({
 
   const onVerify = () => {
     // create a phone auth credentials with the OTP code and verificationId
-    console.log(code);
+    setLoading(true);
 
     const phoneCredentials = auth.PhoneAuthProvider.credential(
       verificationId,
@@ -93,10 +97,15 @@ const VerifyAccountComponent = ({
           });
           console.log('Unable to sign in with credentials', error);
         }
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
-  return (
+  return loading ? (
+    <CustomLoadingOverlay />
+  ) : (
     <KeyboardAvoidingView
       className="h-full"
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
