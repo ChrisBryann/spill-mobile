@@ -11,7 +11,12 @@ export type AuthStackParamsList = {
   Signup: undefined;
   Signin: undefined;
   VerifyAccount: {
-    targetScreen: string;
+    // targetScreen: string; // targetScreen is always going to be Home since after signup or signin, user will be directed to Home
+    previousScreen: string;
+    phoneNumber: string;
+    verificationId: string;
+    fullName?: string; // only needed when signup
+    userName?: string; // only needed when signup
   };
 };
 
