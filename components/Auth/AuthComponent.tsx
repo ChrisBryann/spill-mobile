@@ -13,9 +13,7 @@ import VerifyAccountComponent from './VerifyAccountComponent';
 
 const AuthStack = createNativeStackNavigator<AuthStackParamsList>();
 
-const AuthComponent = ({
-  navigation,
-}: NativeStackScreenProps<AppStackParamsList, 'Auth'>) => {
+const AuthComponent = () => {
   return (
     <AuthStack.Navigator
       initialRouteName="Signin"
@@ -40,7 +38,7 @@ const AuthComponent = ({
       <AuthStack.Screen
         name="VerifyAccount"
         component={VerifyAccountComponent}
-        options={{title: ''}}
+        options={{title: 'Verify account'}}
       />
     </AuthStack.Navigator>
   );

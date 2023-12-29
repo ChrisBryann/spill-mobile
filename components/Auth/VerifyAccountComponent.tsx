@@ -72,8 +72,8 @@ const VerifyAccountComponent = ({
             });
         }
         // if we sign in, then we just let onAuthStateChanged get the user id
-        // navigate to the home screen once successful
-        navigation.navigate('Home');
+        // navigate to the main screen once successful
+        navigation.navigate('Main');
       })
       .catch(error => {
         if (error.code === 'auth/invalid-verification-code') {

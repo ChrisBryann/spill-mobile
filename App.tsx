@@ -10,7 +10,6 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React, {useEffect, useState} from 'react';
 import {AppStackParamsList} from './screen.types';
 import AboutComponent from './components/About/AboutComponent';
-import HomeComponent from './components/Home/HomeComponent';
 import {StatusBar} from 'react-native';
 import AuthComponent from './components/Auth/AuthComponent';
 import {PersistGate} from 'redux-persist/integration/react';
@@ -20,6 +19,7 @@ import {useAppDispatch, useAppSelector} from './store/hooks';
 import {clearUser, selectUser, setUser} from './store/User/userSlice';
 import auth from '@react-native-firebase/auth';
 import Toast from 'react-native-toast-message';
+import MainComponent from './components/Main/MainComponent';
 
 // import {useColorScheme} from 'nativewind';
 
@@ -64,7 +64,7 @@ function App(): JSX.Element {
       <StatusBar barStyle={'dark-content'} />
       <NavigationContainer>
         <AppStack.Navigator
-          initialRouteName={user ? 'Home' : 'About'}
+          initialRouteName={user ? 'Main' : 'About'}
           screenOptions={{headerShown: false}}>
           <AppStack.Screen
             name="About"
@@ -73,8 +73,8 @@ function App(): JSX.Element {
           />
           <AppStack.Screen name="Auth" component={AuthComponent} />
           <AppStack.Screen
-            name="Home"
-            component={HomeComponent}
+            name="Main"
+            component={MainComponent}
             options={{headerShown: false}}
           />
         </AppStack.Navigator>

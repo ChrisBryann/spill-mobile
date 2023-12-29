@@ -3,7 +3,7 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 export type AppStackParamsList = {
   About: undefined;
-  Home: BottomTabScreenProps<HomeTabParamsList>;
+  Main: NativeStackScreenProps<MainTabParamsList>;
   Auth: NativeStackScreenProps<AuthStackParamsList>;
 };
 
@@ -20,9 +20,15 @@ export type AuthStackParamsList = {
   };
 };
 
-export type HomeTabParamsList = {
-  Dashboard: undefined;
-  Expenses: undefined;
-  People: undefined;
+export type MainTabParamsList = {
+  AddExpenseModal: undefined;
+  MainTabBar: BottomTabScreenProps<MainTabBarParamsList>;
+};
+
+export type MainTabBarParamsList = {
+  Home: undefined;
+  History: undefined;
+  Friends: undefined;
+  AddExpense: undefined;
   Account: undefined;
 };
