@@ -194,7 +194,7 @@ const styles = StyleSheet.create({
     color: '#000',
     fontSize: 36,
     textAlign: 'center',
-    fontFamily: 'Outfit',
+    fontFamily: 'Inter',
   },
   focusCell: {
     borderBottomColor: '#014737',

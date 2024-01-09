@@ -47,7 +47,7 @@ const MainTabBarComponent = () => {
           headerTitleAlign: 'left',
           headerTitle: 'spill.',
           headerTintColor: '#03543F',
-          headerTitleStyle: {fontSize: 30, fontFamily: 'Outfit'},
+          headerTitleStyle: {fontSize: 30, fontFamily: 'Inter'},
         }}
       />
       <MainTabBar.Screen
@@ -152,7 +152,7 @@ const MainTabBarScreenOptions: (props: {
     height: '10%',
   },
   tabBarLabelStyle: {
-    fontFamily: 'Outfit',
+    fontFamily: 'Inter',
     marginBottom: '15%',
   },
   tabBarActiveTintColor: '#057A55',
@@ -165,7 +165,7 @@ const MainTabBarScreenOptions: (props: {
   // tabBarActiveBackgroundColor: '#DBEAFE',
   headerTitle: props => <CustomHeaderTitle {...props} />,
   headerTitleStyle: {
-    fontFamily: 'Outfit',
+    fontFamily: 'Inter',
   },
 });
 
