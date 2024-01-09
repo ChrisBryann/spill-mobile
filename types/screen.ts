@@ -28,7 +28,7 @@ export type MainTabParamsList = {
 export type MainTabBarParamsList = {
   Home: undefined;
   History: undefined;
-  Friends: undefined;
+  People: undefined;
   AddExpense: undefined;
   Account: undefined;
 };

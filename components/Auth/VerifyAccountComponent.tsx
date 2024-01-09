@@ -16,7 +16,7 @@ import {
   useBlurOnFulfill,
   useClearByFocusCell,
 } from 'react-native-confirmation-code-field';
-import {AppStackParamsList, AuthStackParamsList} from '../../screen.types';
+import {AppStackParamsList, AuthStackParamsList} from '../../types/screen';
 import FontText from '../UI/FontText';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';

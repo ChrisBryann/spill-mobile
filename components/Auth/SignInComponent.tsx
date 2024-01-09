@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {AppStackParamsList, AuthStackParamsList} from '../../screen.types';
+import {AppStackParamsList, AuthStackParamsList} from '../../types/screen';
 import FontText, {FontTextStyles} from '../UI/FontText';
 import {EC_EASY_SHOPPING_IMG} from '../../assets/images';
 import {SafeAreaView} from 'react-native-safe-area-context';

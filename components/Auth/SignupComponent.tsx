@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import FontText from '../UI/FontText';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {AuthStackParamsList} from '../../screen.types';
+import {AuthStackParamsList} from '../../types/screen';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {
   AtSymbolIcon,

@@ -8,7 +8,7 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React, {useEffect, useState} from 'react';
-import {AppStackParamsList} from './screen.types';
+import {AppStackParamsList} from './types/screen';
 import AboutComponent from './components/About/AboutComponent';
 import {StatusBar} from 'react-native';
 import AuthComponent from './components/Auth/AuthComponent';

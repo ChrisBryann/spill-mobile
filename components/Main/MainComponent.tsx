@@ -1,5 +1,5 @@
 import React from 'react';
-import {MainTabBarParamsList, MainTabParamsList} from '../../screen.types';
+import {MainTabBarParamsList, MainTabParamsList} from '../../types/screen';
 import {
   BottomTabNavigationOptions,
   createBottomTabNavigator,
@@ -8,7 +8,6 @@ import AccountComponent from './Account/AccountComponent';
 import HomeComponent from './Home/HomeComponent';
 import {RouteProp} from '@react-navigation/native';
 import {
-  ChevronLeftIcon,
   CurrencyDollarIcon as CurrencyDollarSolidIcon,
   HomeIcon as HomeSolidIcon,
   PlusCircleIcon,
@@ -19,8 +18,8 @@ import {
   CurrencyDollarIcon,
   HomeIcon,
   UserGroupIcon,
+  XMarkIcon,
 } from 'react-native-heroicons/outline';
-import FriendsComponent from './Friends/FriendsComponent';
 import HistoryComponent from './History/HistoryComponent';
 import CustomHeaderTitle from '../UI/CustomHeaderTitle';
 import AddExpenseComponent, {
@@ -31,6 +30,7 @@ import {
   createNativeStackNavigator,
 } from '@react-navigation/native-stack';
 import {TouchableOpacity} from 'react-native';
+import PeopleComponent from './People/PeopleComponent';
 
 const MainTabBar = createBottomTabNavigator<MainTabBarParamsList>();
 const MainTab = createNativeStackNavigator<MainTabParamsList>();
@@ -51,10 +51,10 @@ const MainTabBarComponent = () => {
         }}
       />
       <MainTabBar.Screen
-        name="Friends"
-        component={FriendsComponent}
+        name="People"
+        component={PeopleComponent}
         options={{
-          headerTitle: 'Your Friends',
+          headerShown: false,
         }}
       />
       <MainTabBar.Screen
@@ -92,9 +92,10 @@ const MainComponent = () => {
 const AddExpenseModalOptions: (props: {
   navigation: any;
 }) => NativeStackNavigationOptions = ({navigation}: {navigation: any}) => ({
-  headerLeft: () => (
+  headerLeft: () => <></>,
+  headerRight: () => (
     <TouchableOpacity className="p-1" onPress={() => navigation.goBack()}>
-      <ChevronLeftIcon color={'black'} />
+      <XMarkIcon color={'black'} />
     </TouchableOpacity>
   ),
   headerTitle: props => <CustomHeaderTitle {...props} />,
@@ -120,7 +121,7 @@ const MainTabBarScreenOptions: (props: {
       ) : (
         <HomeIcon color={color} size={30} />
       )
-    ) : route.name === 'Friends' ? (
+    ) : route.name === 'People' ? (
       focused ? (
         <UserGroupSolidIcon color={color} size={30} />
       ) : (

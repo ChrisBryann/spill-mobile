@@ -3,7 +3,7 @@ import {
   NativeStackScreenProps,
   createNativeStackNavigator,
 } from '@react-navigation/native-stack';
-import {AppStackParamsList, AuthStackParamsList} from '../../screen.types';
+import {AppStackParamsList, AuthStackParamsList} from '../../types/screen';
 import SignupComponent from './SignupComponent';
 import SigninComponent from './SignInComponent';
 import {TouchableOpacity} from 'react-native';
