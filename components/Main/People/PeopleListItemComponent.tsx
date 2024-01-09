@@ -16,8 +16,8 @@ const PeopleListItemComponent = ({user}: Props) => {
         source={PEOPLE_PLACEHOLDER_IMG}
       />
       <View className="flex space-y-2 ">
-        <FontText style="text-lg font-semibold">{user.full_name}</FontText>
-        <FontText style="text-lg text-gray-800">@{user.username}</FontText>
+        <FontText style="text-md font-semibold">{user.full_name}</FontText>
+        <FontText style="text-md text-gray-800">@{user.username}</FontText>
       </View>
     </View>
   );

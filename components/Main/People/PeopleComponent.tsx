@@ -149,6 +149,10 @@ const PeopleComponent = ({
         initialNumToRender={5}
         maxToRenderPerBatch={3}
         stickyHeaderIndices={headerIndexes}
+        onEndReachedThreshold={0.1}
+        onEndReached={info => {
+          console.log('end reached:', info.distanceFromEnd);
+        }}
         // refreshing={true}
         // onRefresh={() => console.log('refreshing...')}
       />

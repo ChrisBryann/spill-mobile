@@ -9,7 +9,7 @@ type Props = {
 const ListHeaderComponent = ({name}: Props) => {
   return (
     <View className="bg-white py-1">
-      <FontText style="text-xl font-semibold">{name}</FontText>
+      <FontText style="text-lg font-semibold">{name}</FontText>
     </View>
   );
 };
