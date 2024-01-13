@@ -6,7 +6,10 @@ import {
 } from '@react-navigation/bottom-tabs';
 import AccountComponent from './Account/AccountComponent';
 import HomeComponent from './Home/HomeComponent';
-import {RouteProp} from '@react-navigation/native';
+import {
+  RouteProp,
+  getFocusedRouteNameFromRoute,
+} from '@react-navigation/native';
 import {
   CurrencyDollarIcon as CurrencyDollarSolidIcon,
   HomeIcon as HomeSolidIcon,
@@ -69,7 +72,11 @@ const MainTabBarComponent = () => {
         })}
       />
       <MainTabBar.Screen name="History" component={HistoryComponent} />
-      <MainTabBar.Screen name="Account" component={AccountComponent} />
+      <MainTabBar.Screen
+        name="Account"
+        component={AccountComponent}
+        options={{headerShown: false}}
+      />
     </MainTabBar.Navigator>
   );
 };

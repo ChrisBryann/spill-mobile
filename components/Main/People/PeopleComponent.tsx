@@ -14,37 +14,37 @@ const peopleTestData: User[] = [
     id: 'E1KCTgIEZtODMAhLGRlgDBQ95Q63',
     username: 'Test1',
     phoneNumber: '(123) 456-7890',
-    full_name: 'Testing',
+    name: 'Testing',
   },
   {
     id: 'k0QKnxm6eAV9A4iOU60T192zTv43',
     username: 'Cbryan',
     phoneNumber: '(949) 537-1151',
-    full_name: 'Christopher Bryan',
+    name: 'Christopher Bryan',
   },
   {
     id: 'E1KCTgIEZtODMAhLGRlgDBQ95Q63',
     username: 'johnsmith123',
     phoneNumber: '(123) 456-7890',
-    full_name: 'John Smith',
+    name: 'John Smith',
   },
   {
     id: 'k0QKnxm6eAV9A4iOU60T192zTv43',
     username: 'jandoe',
     phoneNumber: '(949) 537-1151',
-    full_name: 'Jane Doe',
+    name: 'Jane Doe',
   },
   {
     id: 'E1KCTgIEZtODMAhLGRlgDBQ95Q63',
     username: 'bob-jones',
     phoneNumber: '(123) 456-7890',
-    full_name: 'Bob Jones',
+    name: 'Bob Jones',
   },
   {
     id: 'k0QKnxm6eAV9A4iOU60T192zTv43',
     username: 'hgranger',
     phoneNumber: '(949) 537-1151',
-    full_name: 'Hermione Granger',
+    name: 'Hermione Granger',
   },
 ];
 
@@ -53,19 +53,19 @@ const topPeopleTestData: User[] = [
     id: 'E1KCTgIEZtODMAhLGRlgDBQ95Q63',
     username: 'Test1',
     phoneNumber: '(123) 456-7890',
-    full_name: 'Testing',
+    name: 'Testing',
   },
   {
     id: 'k0QKnxm6eAV9A4iOU60T192zTv43',
     username: 'Cbryan',
     phoneNumber: '(949) 537-1151',
-    full_name: 'Christopher Bryan',
+    name: 'Christopher Bryan',
   },
   {
     id: 'k0QKnxm6eAV9A4iOU60T192zTv43',
     username: 'jandoe',
     phoneNumber: '(949) 537-1151',
-    full_name: 'Jane Doe',
+    name: 'Jane Doe',
   },
 ];
 

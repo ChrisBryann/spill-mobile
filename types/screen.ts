@@ -30,5 +30,14 @@ export type MainTabBarParamsList = {
   History: undefined;
   People: undefined;
   AddExpense: undefined;
-  Account: undefined;
+  Account: NativeStackScreenProps<AccountTabParamsList>;
+};
+
+export type AccountTabParamsList = {
+  AccountMain: undefined;
+  AccountInfo: {
+    name: string;
+    value: string;
+    onSave: (value: string) => Promise<void>;
+  }; // modal to show personal information (eg: name, username, phone number)
 };

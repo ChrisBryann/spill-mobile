@@ -13,6 +13,8 @@ type Props = {
   onValueChange: React.Dispatch<React.SetStateAction<string>>;
   label: string;
   icon?: React.ReactNode;
+  editable?: boolean;
+  defaultValue?: string;
   placeholder?: string;
   inputMode?: InputModeOptions;
   maxLength?: number;
@@ -36,6 +38,8 @@ const CustomInputField = ({
   description,
   errorDescription,
   secured,
+  editable,
+  defaultValue,
   errorHandler,
   customValueDisplay,
 }: Props) => {
@@ -54,7 +58,7 @@ const CustomInputField = ({
     }
   }, [value, errorHandler]);
   return (
-    <View className="py-2 space-y-1">
+    <View className="py-3 space-y-1">
       <FontText style="font-medium ">{label}</FontText>
       <View
         className={`flex flex-row space-x-2 p-2 ${
@@ -63,6 +67,8 @@ const CustomInputField = ({
         {icon}
         <TextInput
           className="w-4/6 grow"
+          defaultValue={defaultValue}
+          editable={editable}
           style={FontTextStyles.text}
           placeholder={placeholder ?? ''}
           placeholderTextColor={'gray'}
@@ -94,8 +100,7 @@ const CustomInputField = ({
           ))}
       </View>
       {(!!description || (!!errorDescription && error)) && (
-        <FontText
-          style={`text-xs py-1 ${error && 'text-red-500'} `}>
+        <FontText style={`text-xs py-1 ${error && 'text-red-500'} `}>
           {error ? errorDescription ?? description : description}
         </FontText>
       )}

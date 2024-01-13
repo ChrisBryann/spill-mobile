@@ -8,7 +8,7 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React, {useEffect, useState} from 'react';
-import {AppStackParamsList} from './types/screen';
+import {AppStackParamsList} from './types/screen.types';
 import AboutComponent from './components/About/AboutComponent';
 import {StatusBar} from 'react-native';
 import AuthComponent from './components/Auth/AuthComponent';
@@ -49,8 +49,6 @@ function App(): JSX.Element {
         console.log('clearing user');
         dispatch(clearUser());
       }
-      console.log('user auth changed!');
-      console.log(user, currentUser);
 
       if (loading) {
         setLoading(false);

@@ -69,6 +69,7 @@ const VerifyAccountComponent = ({
               name: fullName!,
               username: userName!,
               phoneNumber: phoneNumber.replaceAll('[()\\s-]+', '').trim(),
+              imageUri: null,
             });
         }
         // if we sign in, then we just let onAuthStateChanged get the user id

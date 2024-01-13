@@ -1,8 +1,15 @@
 import React from 'react';
+import {TouchableOpacity} from 'react-native';
 import {ChevronLeftIcon} from 'react-native-heroicons/outline';
 
-const CustomHeaderBackButton = (navigation: any) => (
-  <ChevronLeftIcon color={'black'} onPress={() => navigation.goBack()} />
+type Props = {
+  onPress: () => void;
+};
+
+const CustomHeaderBackButton = ({onPress}: Props) => (
+  <TouchableOpacity className="p-1" onPress={onPress}>
+    <ChevronLeftIcon color={'black'} />
+  </TouchableOpacity>
 );
 
 export default CustomHeaderBackButton;

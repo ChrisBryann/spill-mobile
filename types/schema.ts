@@ -1,8 +1,9 @@
 export interface User {
   id: string;
-  full_name: string;
+  name: string;
   username: string;
   phoneNumber: string;
+  imageUri: string;
 }
 
 export interface UserListItem {

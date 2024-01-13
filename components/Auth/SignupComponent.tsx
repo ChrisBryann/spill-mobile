@@ -57,8 +57,22 @@ const SignupComponent = ({
 
   const onSubmit = () => {
     // create new user account in Firebase
-    // check if user exists already, i.e.: if there is an account with the given phone number
+    // check if user exists already, i.e.: if there is an account with the given phone number or username
     setLoading(true);
+    firestore()
+      .collection('users')
+      .where('username', '==', username)
+      .get()
+      .then(querySnapshot => {
+        if (!querySnapshot.empty) {
+          Toast.show({
+            type: 'error',
+            text1: 'User already exists with this username!',
+            text2: 'Please use another username to sign up.',
+          });
+          return;
+        }
+      });
     firestore()
       .collection('users')
       .where(
