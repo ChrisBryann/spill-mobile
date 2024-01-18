@@ -1,5 +1,6 @@
 import {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {User} from './schema';
 
 export type AppStackParamsList = {
   About: undefined;
@@ -31,6 +32,12 @@ export type MainTabBarParamsList = {
   People: undefined;
   AddExpense: undefined;
   Account: NativeStackScreenProps<AccountTabParamsList>;
+};
+
+export type PeopleTabParamsList = {
+  PeopleMain: undefined;
+  PeopleProfile: User;
+  FriendRequest: undefined;
 };
 
 export type AccountTabParamsList = {
