@@ -4,9 +4,9 @@ import {AccountTabParamsList} from '../../../types/screen';
 import FontText from '../../UI/FontText';
 import {
   Image,
-  KeyboardAvoidingView,
   Platform,
   ScrollView,
+  StyleSheet,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -16,11 +16,10 @@ import {formatPhoneNumber} from '../../../utils/utils';
 import {useAppSelector} from '../../../store/hooks';
 import {selectUser} from '../../../store/User/userSlice';
 import firestore from '@react-native-firebase/firestore';
+import storage from '@react-native-firebase/storage';
 import CustomLoadingOverlay from '../../UI/CustomLoadingOverlay';
-import {SafeAreaView} from 'react-native-safe-area-context';
 import {PEOPLE_PLACEHOLDER_IMG} from '../../../assets/images';
 import {User} from '../../../types/schema';
-import {CameraIcon} from 'react-native-heroicons/outline';
 import * as ImagePicker from 'react-native-image-picker';
 import Toast from 'react-native-toast-message';
 
@@ -70,7 +69,7 @@ const AccountInfoComponent = ({
           setPhoneNumber(data.phoneNumber);
           setImageURI(data.imageUri);
         });
-        setTimeout(() => setLoading(false), 100); // useState re renders on the next snapshot, so must put in a callback
+        setTimeout(() => setLoading(false), 200); // useState re renders on the next snapshot, so must put in a callback
       });
 
     return () => {
@@ -91,7 +90,7 @@ const AccountInfoComponent = ({
   ) : (
     <ScrollView
       showsVerticalScrollIndicator={false}
-      contentContainerStyle={{flexGrow: 1}}
+      contentContainerStyle={styles.ScrollViewContent}
       className="flex-1 bg-white">
       <View className="items-center pt-10 pb-6">
         <Image
@@ -106,10 +105,6 @@ const AccountInfoComponent = ({
               includeBase64: false,
               includeExtra: true,
             }).then(result => {
-              if (result.didCancel) {
-                return;
-              }
-
               if (result.errorCode) {
                 switch (result.errorCode) {
                   case 'permission':
@@ -130,9 +125,11 @@ const AccountInfoComponent = ({
 
                 return;
               }
-              result.assets?.map(({uri}) => {
-                setImageURI(uri!);
-              });
+              if (!result.didCancel) {
+                result.assets?.map(({uri}) => {
+                  setImageURI(uri!);
+                });
+              }
             });
           }}>
           <FontText style="text-center text-green-500 text-xs font-medium">
@@ -181,36 +178,66 @@ const AccountInfoComponent = ({
             className={`p-4 w-5/6 ${
               infoChanged ? ' bg-green-900' : 'bg-gray-200'
             } rounded-full my-4 `}
-            onPress={() => {
+            onPress={async () => {
               // update user's info in the database
+              let imageURL = imageURI;
+              let invalidImage = false;
               setLoading(true);
-              user &&
-                firestore()
-                  .collection('users')
-                  .doc(user)
-                  .update({
-                    name: fullName,
-                    phoneNumber,
-                    username,
-                    imageUri: imageURI,
-                  })
-                  .then(() => {
-                    Toast.show({
-                      type: 'success',
-                      text1: 'User info updated!',
+              if (user) {
+                if (imageURL !== currentUser?.imageUri) {
+                  let uploadURI =
+                    Platform.OS === 'ios'
+                      ? imageURL.replace('file://', '')
+                      : imageURL;
+
+                  await storage()
+                    .ref(`/profile-images/${user}`)
+                    .putFile(uploadURI)
+                    .catch(() => {
+                      Toast.show({
+                        type: 'error',
+                        text1: 'Unable to update user info!',
+                        text2: 'Make sure you have a stable connection',
+                      });
+                      invalidImage = true;
                     });
-                    setInfoChanged(false);
-                  })
-                  .catch(() => {
-                    Toast.show({
-                      type: 'error',
-                      text1: 'Unable to update user info!',
-                      text2: 'Make sure you have a stable connection',
+                  if (!invalidImage) {
+                    const imageResult = await storage()
+                      .ref(`/profile-images/${user}`)
+                      .getDownloadURL();
+
+                    if (imageResult) {
+                      imageURL = imageResult;
+                    }
+                  }
+                }
+
+                !invalidImage &&
+                  firestore()
+                    .collection('users')
+                    .doc(user)
+                    .update({
+                      name: fullName,
+                      phoneNumber,
+                      username,
+                      imageUri: imageURL,
+                    })
+                    .then(() => {
+                      Toast.show({
+                        type: 'success',
+                        text1: 'User info updated!',
+                      });
+                      setInfoChanged(false);
+                    })
+                    .catch(() => {
+                      Toast.show({
+                        type: 'error',
+                        text1: 'Unable to update user info!',
+                        text2: 'Make sure you have a stable connection',
+                      });
                     });
-                  })
-                  .finally(() => {
-                    setLoading(false);
-                  });
+              }
+              setLoading(false);
             }}>
             <FontText
               style={`font-medium text-center ${
@@ -236,5 +263,9 @@ const AccountInfoComponent = ({
     </ScrollView>
   );
 };
+
+const styles = StyleSheet.create({
+  ScrollViewContent: {flexGrow: 1},
+});
 
 export default AccountInfoComponent;
