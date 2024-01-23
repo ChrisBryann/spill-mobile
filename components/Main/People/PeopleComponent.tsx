@@ -1,13 +1,17 @@
 import {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
 import React from 'react';
 import {MainTabBarParamsList, PeopleTabParamsList} from '../../../types/screen';
-import {NativeStackNavigationOptions, createNativeStackNavigator} from '@react-navigation/native-stack';
+import {
+  NativeStackNavigationOptions,
+  createNativeStackNavigator,
+} from '@react-navigation/native-stack';
 import PeopleMainComponent from './PeopleMainComponent';
 import PeopleProfileComponent from './PeopleProfileComponent';
-import { RouteProp } from '@react-navigation/native';
-import { TouchableOpacity } from 'react-native';
-import { ChevronLeftIcon } from 'react-native-heroicons/solid';
+import {RouteProp} from '@react-navigation/native';
+import {TouchableOpacity} from 'react-native';
+import {ChevronLeftIcon} from 'react-native-heroicons/solid';
 import CustomHeaderTitle from '../../UI/CustomHeaderTitle';
+import FriendRequestComponent from './FriendRequestComponent';
 
 const PeopleTabNavigator = createNativeStackNavigator<PeopleTabParamsList>();
 
@@ -26,6 +30,11 @@ const PeopleComponent = ({
       <PeopleTabNavigator.Screen
         name="PeopleProfile"
         component={PeopleProfileComponent}
+      />
+      <PeopleTabNavigator.Screen
+        name="FriendRequest"
+        component={FriendRequestComponent}
+        options={{title: 'Friend Requests'}}
       />
     </PeopleTabNavigator.Navigator>
   );

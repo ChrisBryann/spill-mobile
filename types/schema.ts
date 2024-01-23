@@ -11,3 +11,10 @@ export interface UserListItem {
   header_name?: string;
   is_header: boolean;
 }
+
+export interface Friends {
+  sent: string[];
+  received: string[];
+  accepted: string[];
+  blocked: string[];
+}

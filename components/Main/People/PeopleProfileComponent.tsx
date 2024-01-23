@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet, TouchableOpacity, View} from 'react-native';
 import FontText from '../../UI/FontText';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
@@ -7,29 +7,93 @@ import {PEOPLE_PLACEHOLDER_IMG} from '../../../assets/images';
 import {Image} from 'react-native';
 import {UserPlusIcon} from 'react-native-heroicons/outline';
 import {FaceSmileIcon} from 'react-native-heroicons/solid';
+import firestore from '@react-native-firebase/firestore';
+import {useAppSelector} from '../../../store/hooks';
+import {selectUser} from '../../../store/User/userSlice';
+import Toast from 'react-native-toast-message';
+import {Friends} from '../../../types/schema';
 
 const PeopleProfileComponent = ({
   navigation,
   route,
 }: NativeStackScreenProps<PeopleTabParamsList, 'PeopleProfile'>) => {
-  const user = route.params;
+  const user = useAppSelector(selectUser);
+  const person = route.params;
+  const [friendStatus, setFriendStatus] = useState<
+    'accepted' | 'pending' | 'blocked' | 'none'
+  >('none');
   useEffect(() => {
     navigation.setOptions({
-      title: user.name,
+      title: person.name,
     });
-  }, [user, navigation]);
+    // check if we already added this user
+    // set activity loader on the button
+    firestore()
+      .collection('friends')
+      .doc(person.id)
+      .get()
+      .then(querySnapshot => {
+        if (querySnapshot.exists) {
+          const data = querySnapshot.data() as Friends;
+          if (data.received.some(id => id === person.id)) {
+            setFriendStatus('pending');
+          } else if (data.accepted.some(id => id === person.id)) {
+            setFriendStatus('accepted');
+          } else if (data.blocked.some(id => id === person.id)) {
+            setFriendStatus('blocked');
+          }
+        }
+      });
+  }, [person, navigation]);
+
+  const onAddFriend = () => {
+    // send the friend request to the person
+    // 2 steps: 1. insert person's id currentUser's friend collections sent array
+    //          2. insert currentUser's id to person's friend collections received array
+    // once person has accepted request, both person and currentUser's id will be moved to accepted array in both
+    if (user) {
+      const batch = firestore().batch();
+
+      // step 1
+      batch.update(firestore().collection('friends').doc(person.id), {
+        received: firestore.FieldValue.arrayUnion(user),
+      });
+      // step 2
+      batch.update(firestore().collection('friends').doc(user), {
+        sent: firestore.FieldValue.arrayUnion(person.id),
+      });
+
+      batch
+        .commit()
+        .then(() => {
+          Toast.show({
+            type: 'success',
+            text1: 'Friend request sent!',
+          });
+        })
+        .catch(() => {
+          Toast.show({
+            type: 'error',
+            text1: `Unable to add ${person.name}!`,
+            text2: 'Make sure you have a stable connection',
+          });
+        });
+    }
+  };
   return (
     <View className="flex-1 bg-white">
-      <View className="items-center py-12 space-y-4">
+      <View className="items-center py-12 px-4 space-y-4">
         <Image
           className="w-36 h-36 rounded-full my-2"
-          source={user.imageUri ? {uri: user.imageUri} : PEOPLE_PLACEHOLDER_IMG}
+          source={
+            person.imageUri ? {uri: person.imageUri} : PEOPLE_PLACEHOLDER_IMG
+          }
         />
         <View>
           <FontText style="text-center text-xl font-semibold">
-            {user.name}
+            {person.name}
           </FontText>
-          <FontText style="text-center text-lg">@{user.username}</FontText>
+          <FontText style="text-center text-lg">@{person.username}</FontText>
         </View>
         <View className="flex-row items-center">
           <TouchableOpacity className="flex-row items-center p-2 mx-2 border border-green-700 rounded-lg">

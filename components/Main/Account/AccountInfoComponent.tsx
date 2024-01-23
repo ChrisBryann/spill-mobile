@@ -49,33 +49,35 @@ const AccountInfoComponent = ({
   const [infoChanged, setInfoChanged] = useState<boolean>(false);
 
   useEffect(() => {
-    setLoading(true);
-    const unsubscribe = firestore()
-      .collection('users')
-      .where('__name__', '==', user)
-      .onSnapshot(querySnapshot => {
-        setLoading(true);
-        querySnapshot.forEach(query => {
-          const data = query.data();
-          setCurrentUser({
-            id: query.id,
-            name: data.name,
-            username: data.username,
-            phoneNumber: data.phoneNumber,
-            imageUri: data.imageUri,
+    if (user) {
+      setLoading(true);
+      const unsubscribe = firestore()
+        .collection('users')
+        .where('__name__', '==', user)
+        .onSnapshot(querySnapshot => {
+          setLoading(true);
+          querySnapshot.forEach(query => {
+            const data = query.data();
+            setCurrentUser({
+              id: query.id,
+              name: data.name,
+              username: data.username,
+              phoneNumber: data.phoneNumber,
+              imageUri: data.imageUri,
+            });
+            setFullName(data.name);
+            setUsername(data.username);
+            setPhoneNumber(data.phoneNumber);
+            setImageURI(data.imageUri);
           });
-          setFullName(data.name);
-          setUsername(data.username);
-          setPhoneNumber(data.phoneNumber);
-          setImageURI(data.imageUri);
+          setTimeout(() => setLoading(false), 200); // useState re renders on the next snapshot, so must put in a callback
         });
-        setTimeout(() => setLoading(false), 200); // useState re renders on the next snapshot, so must put in a callback
-      });
 
-    return () => {
-      unsubscribe();
-    };
-  }, []);
+      return () => {
+        unsubscribe();
+      };
+    }
+  }, [user]);
 
   useEffect(() => {
     currentUser?.name !== fullName ||
