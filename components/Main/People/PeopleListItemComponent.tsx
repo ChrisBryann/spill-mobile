@@ -11,7 +11,9 @@ type Props = {
 
 const PeopleListItemComponent = ({user, onPress}: Props) => {
   return (
-    <TouchableOpacity className="p-1 flex-row space-x-2 items-center" onPress={onPress}>
+    <TouchableOpacity
+      className="p-1 flex-row space-x-2 items-center"
+      onPress={onPress}>
       <Image
         className="w-12 h-12 rounded-full"
         source={PEOPLE_PLACEHOLDER_IMG}

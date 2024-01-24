@@ -31,11 +31,6 @@ const PeopleComponent = ({
         name="PeopleProfile"
         component={PeopleProfileComponent}
       />
-      <PeopleTabNavigator.Screen
-        name="FriendRequest"
-        component={FriendRequestComponent}
-        options={{title: 'Friend Requests'}}
-      />
     </PeopleTabNavigator.Navigator>
   );
 };
@@ -50,6 +45,7 @@ const PeopleTabOptions: (props: {
     </TouchableOpacity>
   ),
   headerTitle: props => <CustomHeaderTitle {...props} />,
+  headerShadowVisible: false,
 });
 
 export default PeopleComponent;

@@ -27,17 +27,23 @@ export type MainTabParamsList = {
 };
 
 export type MainTabBarParamsList = {
-  Home: undefined;
+  Home: NativeStackScreenProps<HomeTabParamsList>;
   History: undefined;
-  People: undefined;
+  People: NativeStackScreenProps<PeopleTabParamsList>;
   AddExpense: undefined;
   Account: NativeStackScreenProps<AccountTabParamsList>;
+};
+
+export type HomeTabParamsList = {
+  HomeMain: undefined;
+  HomeNotifications: {
+    receivedFriendRequests: string[];
+  };
 };
 
 export type PeopleTabParamsList = {
   PeopleMain: undefined;
   PeopleProfile: User;
-  FriendRequest: undefined;
 };
 
 export type AccountTabParamsList = {

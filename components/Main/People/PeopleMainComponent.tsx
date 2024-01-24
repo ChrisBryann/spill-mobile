@@ -2,7 +2,7 @@ import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {PeopleTabParamsList} from '../../../types/screen';
 import {FlatList, TextInput, TouchableOpacity, View} from 'react-native';
 import {MagnifyingGlassIcon} from 'react-native-heroicons/outline';
-import {User, UserListItem} from '../../../types/schema';
+import {Friends, User, UserListItem} from '../../../types/schema';
 import PeopleListItemComponent from './PeopleListItemComponent';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import ListHeaderComponent from '../../UI/ListHeaderComponent';
@@ -190,6 +190,7 @@ const PeopleMainComponent = ({
   }, []);
 
   useEffect(() => {
+    // for query searching
     const getSearchQuery = async () => {
       if (searchQuery) {
         let headerIndex = [0];
@@ -241,6 +242,26 @@ const PeopleMainComponent = ({
     getSearchQuery();
   }, [searchQuery]);
 
+  useEffect(() => {
+    // check if there are any new friend request or get the current friends for display
+
+    if (user) {
+      const friends_unsubscribe = firestore()
+        .collection('friends')
+        .doc(user)
+        .onSnapshot(snapshot => {
+          if (snapshot.exists) {
+            const data = snapshot.data() as Friends;
+            setReceivedFriends(data.received);
+          }
+        });
+
+      return () => {
+        friends_unsubscribe();
+      };
+    }
+  });
+
   //   useEffect(() => {
   //     if (user) {
   //       const friends_unsubscribe = firestore()
@@ -267,10 +288,10 @@ const PeopleMainComponent = ({
 
   return (
     <View
-      style={{paddingTop: insets.top}}
+      style={{paddingTop: insets.top + 2}}
       className="flex-1 bg-white justify-start items-center py-2 space-y-2">
       <View className="flex-row space-x-3 items-center">
-        <View className="flex-row w-5/6 border border-gray-300 rounded-full px-3 py-4 focus:border-green-700 space-x-1">
+        <View className="flex-row w-5/6 border border-gray-300 rounded-full px-3 py-3 focus:border-green-700 space-x-1">
           <MagnifyingGlassIcon color={'#6B7280'} size={20} />
           <TextInput
             className="grow"
@@ -280,12 +301,6 @@ const PeopleMainComponent = ({
             onChangeText={setSearchQuery}
           />
         </View>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('FriendRequest');
-          }}>
-          <BellIcon size={28} color={'black'} />
-        </TouchableOpacity>
       </View>
       <FlatList
         className="w-screen px-6"

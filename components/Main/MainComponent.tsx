@@ -11,6 +11,7 @@ import {
   getFocusedRouteNameFromRoute,
 } from '@react-navigation/native';
 import {
+  BellIcon,
   CurrencyDollarIcon as CurrencyDollarSolidIcon,
   HomeIcon as HomeSolidIcon,
   PlusCircleIcon,
@@ -30,6 +31,7 @@ import AddExpenseComponent, {
 } from './AddExpense/AddExpenseComponent';
 import {
   NativeStackNavigationOptions,
+  NativeStackScreenProps,
   createNativeStackNavigator,
 } from '@react-navigation/native-stack';
 import {TouchableOpacity} from 'react-native';
@@ -38,7 +40,9 @@ import PeopleComponent from './People/PeopleComponent';
 const MainTabBar = createBottomTabNavigator<MainTabBarParamsList>();
 const MainTab = createNativeStackNavigator<MainTabParamsList>();
 
-const MainTabBarComponent = () => {
+const MainTabBarComponent = ({
+  navigation,
+}: NativeStackScreenProps<MainTabParamsList, 'MainTabBar'>) => {
   return (
     <MainTabBar.Navigator
       initialRouteName="Home"
@@ -47,10 +51,11 @@ const MainTabBarComponent = () => {
         name="Home"
         component={HomeComponent}
         options={{
-          headerTitleAlign: 'left',
-          headerTitle: 'spill.',
-          headerTintColor: '#03543F',
-          headerTitleStyle: {fontSize: 30, fontFamily: 'Inter'},
+          // headerTitleAlign: 'left',
+          // headerTitle: 'spill.',
+          // headerTintColor: '#03543F',
+          // headerTitleStyle: {fontSize: 30, fontFamily: 'Inter'},
+          headerShown: false,
         }}
       />
       <MainTabBar.Screen
@@ -158,6 +163,11 @@ const MainTabBarScreenOptions: (props: {
     borderTopWidth: 0,
     height: '10%',
   },
+  tabBarItemStyle: {
+    marginHorizontal: 4,
+    marginVertical: 6,
+    borderRadius: 6,
+  },
   tabBarLabelStyle: {
     fontFamily: 'Inter',
     marginBottom: '15%',
@@ -169,11 +179,13 @@ const MainTabBarScreenOptions: (props: {
   //   marginVertical: 5,
   //   marginHorizontal: 30,
   // },
-  // tabBarActiveBackgroundColor: '#DBEAFE',
+  tabBarActiveBackgroundColor: '#F3FAF7',
   headerTitle: props => <CustomHeaderTitle {...props} />,
   headerTitleStyle: {
     fontFamily: 'Inter',
   },
+  headerShadowVisible: false,
+  headerShown: getFocusedRouteNameFromRoute(route) !== 'HomeNotifications',
 });
 
 export default MainComponent;

@@ -33,6 +33,7 @@ const AccountComponent = ({
         headerTitleStyle: {
           fontFamily: 'Inter',
         },
+        headerShadowVisible: false,
       })}>
       <AccountTabNavigator.Screen
         name="AccountMain"

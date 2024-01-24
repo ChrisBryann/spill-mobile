@@ -12,6 +12,7 @@ import {useAppSelector} from '../../../store/hooks';
 import {selectUser} from '../../../store/User/userSlice';
 import Toast from 'react-native-toast-message';
 import {Friends} from '../../../types/schema';
+import CustomLoadingOverlay from '../../UI/CustomLoadingOverlay';
 
 const PeopleProfileComponent = ({
   navigation,
@@ -19,6 +20,8 @@ const PeopleProfileComponent = ({
 }: NativeStackScreenProps<PeopleTabParamsList, 'PeopleProfile'>) => {
   const user = useAppSelector(selectUser);
   const person = route.params;
+  const [friendStatusLoading, setFriendStatusLoading] =
+    useState<boolean>(false);
   const [friendStatus, setFriendStatus] = useState<
     'accepted' | 'pending' | 'blocked' | 'none'
   >('none');
@@ -28,6 +31,7 @@ const PeopleProfileComponent = ({
     });
     // check if we already added this user
     // set activity loader on the button
+    setFriendStatusLoading(true);
     firestore()
       .collection('friends')
       .doc(person.id)
@@ -43,6 +47,9 @@ const PeopleProfileComponent = ({
             setFriendStatus('blocked');
           }
         }
+      })
+      .finally(() => {
+        setFriendStatusLoading(false);
       });
   }, [person, navigation]);
 
@@ -52,6 +59,7 @@ const PeopleProfileComponent = ({
     //          2. insert currentUser's id to person's friend collections received array
     // once person has accepted request, both person and currentUser's id will be moved to accepted array in both
     if (user) {
+      setFriendStatusLoading(true);
       const batch = firestore().batch();
 
       // step 1
@@ -77,10 +85,46 @@ const PeopleProfileComponent = ({
             text1: `Unable to add ${person.name}!`,
             text2: 'Make sure you have a stable connection',
           });
+        })
+        .finally(() => {
+          setFriendStatusLoading(false);
         });
     }
   };
-  return (
+
+  const onRemoveFriend = () => {
+    // 2 steps: 1. remove person's id from currentUser's friend collections accepted array
+    //          2. insert currentUser's id from person's friend collections accepted array
+    if (user) {
+      setFriendStatusLoading(true);
+      const batch = firestore().batch();
+
+      // step 1
+      batch.update(firestore().collection('friends').doc(person.id), {
+        accepted: firestore.FieldValue.arrayUnion(user),
+      });
+      // step 2
+      batch.update(firestore().collection('friends').doc(user), {
+        accepted: firestore.FieldValue.arrayUnion(person.id),
+      });
+
+      batch
+        .commit()
+        .catch(() => {
+          Toast.show({
+            type: 'error',
+            text1: `Unable to remove ${person.name} as friend!`,
+            text2: 'Make sure you have a stable connection',
+          });
+        })
+        .finally(() => {
+          setFriendStatusLoading(false);
+        });
+    }
+  };
+  return friendStatusLoading ? (
+    <CustomLoadingOverlay />
+  ) : (
     <View className="flex-1 bg-white">
       <View className="items-center py-12 px-4 space-y-4">
         <Image
@@ -96,10 +140,18 @@ const PeopleProfileComponent = ({
           <FontText style="text-center text-lg">@{person.username}</FontText>
         </View>
         <View className="flex-row items-center">
-          <TouchableOpacity className="flex-row items-center p-2 mx-2 border border-green-700 rounded-lg">
+          <TouchableOpacity
+            onPress={friendStatus === 'none' ? onAddFriend : undefined}
+            className="flex-row items-center p-2 mx-2 border border-green-700 rounded-lg">
             <UserPlusIcon size={16} color={'#046C4E'} />
             <FontText style="pl-1 text-sm font-medium text-green-700">
-              Add Friend
+              {friendStatus === 'none'
+                ? 'Add Friend'
+                : friendStatus === 'accepted'
+                ? 'Remove Friend'
+                : friendStatus === 'pending'
+                ? 'Request Sent'
+                : 'Blocked'}
             </FontText>
           </TouchableOpacity>
 
