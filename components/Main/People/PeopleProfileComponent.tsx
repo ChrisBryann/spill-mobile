@@ -5,7 +5,8 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {PeopleTabParamsList} from '../../../types/screen';
 import {PEOPLE_PLACEHOLDER_IMG} from '../../../assets/images';
 import {Image} from 'react-native';
-import {UserPlusIcon} from 'react-native-heroicons/outline';
+import {CheckIcon, UserMinusIcon} from 'react-native-heroicons/outline';
+import {UserPlusIcon} from 'react-native-heroicons/solid';
 import {FaceSmileIcon} from 'react-native-heroicons/solid';
 import firestore from '@react-native-firebase/firestore';
 import {useAppSelector} from '../../../store/hooks';
@@ -25,33 +26,47 @@ const PeopleProfileComponent = ({
   const [friendStatus, setFriendStatus] = useState<
     'accepted' | 'pending' | 'blocked' | 'none'
   >('none');
+  const [numOfFriends, setNumOfFriends] = useState<number>(0);
   useEffect(() => {
     navigation.setOptions({
       title: person.name,
     });
     // check if we already added this user
     // set activity loader on the button
-    setFriendStatusLoading(true);
-    firestore()
+    const profile_unsubscribe = firestore()
       .collection('friends')
       .doc(person.id)
-      .get()
-      .then(querySnapshot => {
-        if (querySnapshot.exists) {
-          const data = querySnapshot.data() as Friends;
-          if (data.received.some(id => id === person.id)) {
-            setFriendStatus('pending');
-          } else if (data.accepted.some(id => id === person.id)) {
-            setFriendStatus('accepted');
-          } else if (data.blocked.some(id => id === person.id)) {
-            setFriendStatus('blocked');
+      .onSnapshot(
+        querySnapshot => {
+          if (querySnapshot.exists) {
+            try {
+              setFriendStatusLoading(true);
+              const data = querySnapshot.data() as Friends;
+              if (data.received.some(id => id === user)) {
+                setFriendStatus('pending');
+              } else if (data.accepted.some(id => id === user)) {
+                setFriendStatus('accepted');
+              } else if (data.blocked.some(id => id === user)) {
+                setFriendStatus('blocked');
+              }
+              setNumOfFriends(data.accepted.length);
+            } finally {
+              setFriendStatusLoading(false);
+            }
           }
-        }
-      })
-      .finally(() => {
-        setFriendStatusLoading(false);
-      });
-  }, [person, navigation]);
+        },
+        () => {
+          Toast.show({
+            type: 'error',
+            text1: 'Unable to load friend status!',
+            text2: 'Make sure you have a stable connection',
+          });
+        },
+      );
+    return () => {
+      profile_unsubscribe();
+    };
+  }, [person, navigation, user]);
 
   const onAddFriend = () => {
     // send the friend request to the person
@@ -141,26 +156,54 @@ const PeopleProfileComponent = ({
         </View>
         <View className="flex-row items-center">
           <TouchableOpacity
-            onPress={friendStatus === 'none' ? onAddFriend : undefined}
-            className="flex-row items-center p-2 mx-2 border border-green-700 rounded-lg">
-            <UserPlusIcon size={16} color={'#046C4E'} />
-            <FontText style="pl-1 text-sm font-medium text-green-700">
+            disabled={friendStatus !== 'none'}
+            onPress={
+              friendStatus === 'none'
+                ? onAddFriend
+                : friendStatus === 'accepted'
+                ? onRemoveFriend
+                : undefined
+            }
+            className={`flex-row items-center p-2 mx-2 ${
+              friendStatus === 'accepted' && 'border border-green-700'
+            } rounded-lg ${
+              friendStatus === 'none'
+                ? 'bg-green-700'
+                : friendStatus === 'pending' && 'bg-gray-200'
+            }`}>
+            {friendStatus === 'none' ? (
+              <UserPlusIcon size={16} color={'white'} />
+            ) : friendStatus === 'accepted' ? (
+              <UserMinusIcon size={16} color={'#046C4E'} />
+            ) : friendStatus === 'pending' ? (
+              <CheckIcon size={16} color={'#1F2A37'} />
+            ) : undefined}
+            <FontText
+              style={`pl-1 text-sm font-medium ${
+                friendStatus === 'none'
+                  ? 'text-white'
+                  : friendStatus === 'pending'
+                  ? 'text-gray-800'
+                  : 'text-green-700'
+              }`}>
               {friendStatus === 'none'
                 ? 'Add Friend'
                 : friendStatus === 'accepted'
                 ? 'Remove Friend'
                 : friendStatus === 'pending'
-                ? 'Request Sent'
+                ? 'Requested'
                 : 'Blocked'}
             </FontText>
           </TouchableOpacity>
 
-          <TouchableOpacity className="flex-row items-center p-2 mx-2 border border-green-700 rounded-lg">
-            <FaceSmileIcon size={16} color={'#046C4E'} />
-            <FontText style="pl-1 text-sm font-medium text-green-700">
-              27 Friends
-            </FontText>
-          </TouchableOpacity>
+          {numOfFriends > 0 && (
+            <TouchableOpacity className="flex-row items-center p-2 mx-2 border border-green-700 rounded-lg">
+              <FaceSmileIcon size={16} color={'#046C4E'} />
+              <FontText style="pl-1 text-sm font-medium text-green-700">
+                {numOfFriends} Friends
+              </FontText>
+            </TouchableOpacity>
+          )}
         </View>
       </View>
       <View className="border-0.5 border-gray-300 mx-6" />

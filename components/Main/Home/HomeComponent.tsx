@@ -11,7 +11,6 @@ import {RouteProp} from '@react-navigation/native';
 import CustomHeaderTitle from '../../UI/CustomHeaderTitle';
 import {TouchableOpacity, View} from 'react-native';
 import {BellIcon, ChevronLeftIcon} from 'react-native-heroicons/solid';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import FontText from '../../UI/FontText';
 import {useAppSelector} from '../../../store/hooks';
 import {selectUser} from '../../../store/User/userSlice';
@@ -64,25 +63,14 @@ const HomeTabScreenOptions: (props: {
   route: RouteProp<HomeTabParamsList, keyof HomeTabParamsList>;
   navigation: any;
 }) => NativeStackNavigationOptions = ({navigation}) => {
-  const insets = useSafeAreaInsets();
   return {
     headerLeft: () => (
-      <TouchableOpacity
-        style={{
-          paddingTop: insets.top,
-          paddingBottom: insets.bottom,
-        }}
-        className="p-1"
-        onPress={() => navigation.goBack()}>
+      <TouchableOpacity className="p-1" onPress={() => navigation.goBack()}>
         <ChevronLeftIcon color={'black'} />
       </TouchableOpacity>
     ),
     headerTitle: props => (
-      <View
-        style={{
-          paddingTop: insets.top,
-          paddingBottom: insets.bottom,
-        }}>
+      <View>
         <CustomHeaderTitle {...props} />
       </View>
     ),
@@ -109,12 +97,13 @@ const HomeMainOptions: (props: {
       className="p-1"
       onPress={() => {
         navigation.navigate('HomeNotifications', {
-          params: {
-            receivedFriendRequests,
-          },
+          receivedFriendRequests,
         });
       }}>
       <BellIcon size={24} color={'black'} />
+      {receivedFriendRequests.length > 0 && (
+        <View className="absolute flex justify-center items-center w-2 h-2 bg-red-500 rounded-full top-0.5 right-1.5" />
+      )}
     </TouchableOpacity>
   ),
 });

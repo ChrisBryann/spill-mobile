@@ -12,22 +12,6 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 const HomeMainComponent = ({
   navigation,
 }: NativeStackScreenProps<HomeTabParamsList, 'HomeMain'>) => {
-  const user = useAppSelector(selectUser);
-  const [receivedFriends, setReceivedFriends] = useState<string[]>([]);
-  useEffect(() => {
-    if (user) {
-      firestore()
-        .collection('friends')
-        .doc(user)
-        .get()
-        .then(async querySnapshot => {
-          if (querySnapshot.exists) {
-            const data = querySnapshot.data() as Friends;
-            setReceivedFriends(data.received);
-          }
-        });
-    }
-  }, [user]);
   return (
     <View className="flex-1 p-3">
       {/* <FontText style="text-xl font-semibold text-gray-600">

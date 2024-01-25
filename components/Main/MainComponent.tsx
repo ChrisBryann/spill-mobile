@@ -6,12 +6,8 @@ import {
 } from '@react-navigation/bottom-tabs';
 import AccountComponent from './Account/AccountComponent';
 import HomeComponent from './Home/HomeComponent';
+import {RouteProp} from '@react-navigation/native';
 import {
-  RouteProp,
-  getFocusedRouteNameFromRoute,
-} from '@react-navigation/native';
-import {
-  BellIcon,
   CurrencyDollarIcon as CurrencyDollarSolidIcon,
   HomeIcon as HomeSolidIcon,
   PlusCircleIcon,
@@ -51,10 +47,6 @@ const MainTabBarComponent = ({
         name="Home"
         component={HomeComponent}
         options={{
-          // headerTitleAlign: 'left',
-          // headerTitle: 'spill.',
-          // headerTintColor: '#03543F',
-          // headerTitleStyle: {fontSize: 30, fontFamily: 'Inter'},
           headerShown: false,
         }}
       />
@@ -160,12 +152,10 @@ const MainTabBarScreenOptions: (props: {
   // },
   tabBarShowLabel: true,
   tabBarStyle: {
-    borderTopWidth: 0,
     height: '10%',
   },
   tabBarItemStyle: {
-    marginHorizontal: 4,
-    marginVertical: 6,
+    marginTop: 2,
     borderRadius: 6,
   },
   tabBarLabelStyle: {
@@ -185,7 +175,6 @@ const MainTabBarScreenOptions: (props: {
     fontFamily: 'Inter',
   },
   headerShadowVisible: false,
-  headerShown: getFocusedRouteNameFromRoute(route) !== 'HomeNotifications',
 });
 
 export default MainComponent;

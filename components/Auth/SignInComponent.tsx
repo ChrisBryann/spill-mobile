@@ -1,16 +1,13 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React, {useState} from 'react';
 import {
-  Image,
   KeyboardAvoidingView,
   Platform,
   TextInput,
   TouchableOpacity,
-  View,
 } from 'react-native';
-import {AppStackParamsList, AuthStackParamsList} from '../../types/screen';
+import {AuthStackParamsList} from '../../types/screen';
 import FontText, {FontTextStyles} from '../UI/FontText';
-import {EC_EASY_SHOPPING_IMG} from '../../assets/images';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {formatPhoneNumber} from '../../utils/utils';
 import firestore from '@react-native-firebase/firestore';

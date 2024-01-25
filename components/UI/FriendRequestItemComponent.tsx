@@ -20,9 +20,11 @@ const FriendRequestItemComponent = ({person, onAccept, onDecline}: Props) => {
             person.imageUri ? {uri: person.imageUri} : PEOPLE_PLACEHOLDER_IMG
           }
         />
-        <View className="flex space-y-2 ">
+        <View className="flex">
           <FontText style="font-semibold">{person.name}</FontText>
-          <FontText style="text-gray-800">@{person.username}</FontText>
+          <FontText style="text-sm text-gray-800">
+            added you as a friend
+          </FontText>
         </View>
       </View>
       <View className="flex-row items-center space-x-2">

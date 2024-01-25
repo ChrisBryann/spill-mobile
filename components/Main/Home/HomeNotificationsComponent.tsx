@@ -3,12 +3,13 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {HomeTabParamsList} from '../../../types/screen';
 import {ScrollView, View} from 'react-native';
 import firestore from '@react-native-firebase/firestore';
-import {Friends, User} from '../../../types/schema';
+import {User} from '../../../types/schema';
 import {useAppSelector} from '../../../store/hooks';
 import {selectUser} from '../../../store/User/userSlice';
 import FontText from '../../UI/FontText';
 import FriendRequestItemComponent from '../../UI/FriendRequestItemComponent';
 import Toast from 'react-native-toast-message';
+import CustomLoadingOverlay from '../../UI/CustomLoadingOverlay';
 
 const HomeNotificationsComponent = ({
   navigation,
@@ -17,34 +18,29 @@ const HomeNotificationsComponent = ({
   const user = useAppSelector(selectUser);
   const {receivedFriendRequests} = route.params;
   const [loading, setLoading] = useState<boolean>(false);
-  const [receivedUsers, setReceivedUsers] = useState<User[]>([
-    {
-      id: 'E1KCTgIEZtODMAhLGRlgDBQ95Q63',
-      username: 'Test1',
-      phoneNumber: '(123) 456-7890',
-      name: 'Testing',
-    },
-  ]);
+  const [receivedUsers, setReceivedUsers] = useState<User[]>([]);
   useEffect(() => {
     // 1. get any new incoming friend requests
     // 2. any new app updates
-    setLoading(true);
+
     if (receivedFriendRequests) {
+      setLoading(true);
+      let newFriends: User[] = [];
       Promise.all(
         receivedFriendRequests.map(id =>
           firestore().collection('users').doc(id).get(),
         ),
       )
-        .then(async response => {
-          let newFriends: User[] = [];
-          await response.forEach(snapshot => {
-            if (snapshot.exists) {
-              const person = snapshot.data() as User;
-              newFriends.push({
-                ...person,
-                id: snapshot.id,
-              });
-            }
+        .then(response => {
+          if (response.some(snapshot => !snapshot.exists)) {
+            throw Error();
+          }
+          response.forEach(snapshot => {
+            const person = snapshot.data() as User;
+            newFriends.push({
+              ...person,
+              id: snapshot.id,
+            });
           });
           setReceivedUsers(newFriends);
         })
@@ -55,13 +51,13 @@ const HomeNotificationsComponent = ({
             text2: 'Make sure you have a stable connection',
           });
         })
-        .finally(() => {
-          setLoading(false);
-        });
+        .finally(() => setLoading(false));
     }
   }, [receivedFriendRequests]);
 
-  return (
+  return loading ? (
+    <CustomLoadingOverlay />
+  ) : (
     <View className="flex-1 bg-white">
       <ScrollView
         contentContainerStyle={{
@@ -96,6 +92,9 @@ const HomeNotificationsComponent = ({
                   batch
                     .commit()
                     .then(() => {
+                      setReceivedUsers(prev =>
+                        prev.filter(p => p.id !== person.id),
+                      );
                       Toast.show({
                         type: 'success',
                         text1: `${person.name} is now your friend.`,
@@ -131,6 +130,9 @@ const HomeNotificationsComponent = ({
                   batch
                     .commit()
                     .then(() => {
+                      setReceivedUsers(prev =>
+                        prev.filter(p => p.id !== person.id),
+                      );
                       Toast.show({
                         type: 'success',
                         text1: `You declined ${person.name}'s request.`,

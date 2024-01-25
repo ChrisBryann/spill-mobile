@@ -24,6 +24,7 @@ const AuthComponent = () => {
           </TouchableOpacity>
         ),
         headerTitle: props => <CustomHeaderTitle {...props} />,
+        headerShadowVisible: false,
       })}>
       <AuthStack.Screen
         name="Signup"

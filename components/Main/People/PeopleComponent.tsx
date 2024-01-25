@@ -11,7 +11,6 @@ import {RouteProp} from '@react-navigation/native';
 import {TouchableOpacity} from 'react-native';
 import {ChevronLeftIcon} from 'react-native-heroicons/solid';
 import CustomHeaderTitle from '../../UI/CustomHeaderTitle';
-import FriendRequestComponent from './FriendRequestComponent';
 
 const PeopleTabNavigator = createNativeStackNavigator<PeopleTabParamsList>();
 

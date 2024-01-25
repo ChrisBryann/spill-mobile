@@ -1,6 +1,6 @@
-import React, {useCallback, useEffect, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {PeopleTabParamsList} from '../../../types/screen';
-import {FlatList, TextInput, TouchableOpacity, View} from 'react-native';
+import {FlatList, TextInput, View} from 'react-native';
 import {MagnifyingGlassIcon} from 'react-native-heroicons/outline';
 import {Friends, User, UserListItem} from '../../../types/schema';
 import PeopleListItemComponent from './PeopleListItemComponent';
@@ -8,73 +8,13 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import ListHeaderComponent from '../../UI/ListHeaderComponent';
 import ListItemSeparatorComponent from '../../UI/ListItemSeparatorComponent';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {BellIcon} from 'react-native-heroicons/solid';
 import {FontTextStyles} from '../../UI/FontText';
 import {useAppSelector} from '../../../store/hooks';
 import {selectUser} from '../../../store/User/userSlice';
-import firestore, {Filter} from '@react-native-firebase/firestore';
+import firestore from '@react-native-firebase/firestore';
 import {AUTOCOMPLETE_SUFFIX, PAGINATION_LIMIT} from '../../../constants/main';
 import Toast from 'react-native-toast-message';
-
-const peopleTestData: User[] = [
-  {
-    id: 'E1KCTgIEZtODMAhLGRlgDBQ95Q63',
-    username: 'Test1',
-    phoneNumber: '(123) 456-7890',
-    name: 'Testing',
-  },
-  {
-    id: 'k0QKnxm6eAV9A4iOU60T192zTv43',
-    username: 'Cbryan',
-    phoneNumber: '(949) 537-1151',
-    name: 'Christopher Bryan',
-  },
-  {
-    id: 'E1KCTgIEZtODMAhLGRlgDBQ95Q63',
-    username: 'johnsmith123',
-    phoneNumber: '(123) 456-7890',
-    name: 'John Smith',
-  },
-  {
-    id: 'k0QKnxm6eAV9A4iOU60T192zTv43',
-    username: 'jandoe',
-    phoneNumber: '(949) 537-1151',
-    name: 'Jane Doe',
-  },
-  {
-    id: 'E1KCTgIEZtODMAhLGRlgDBQ95Q63',
-    username: 'bob-jones',
-    phoneNumber: '(123) 456-7890',
-    name: 'Bob Jones',
-  },
-  {
-    id: 'k0QKnxm6eAV9A4iOU60T192zTv43',
-    username: 'hgranger',
-    phoneNumber: '(949) 537-1151',
-    name: 'Hermione Granger',
-  },
-];
-
-const topPeopleTestData: User[] = [
-  {
-    id: 'E1KCTgIEZtODMAhLGRlgDBQ95Q63',
-    username: 'Test1',
-    phoneNumber: '(123) 456-7890',
-    name: 'Testing',
-  },
-  {
-    id: 'k0QKnxm6eAV9A4iOU60T192zTv43',
-    username: 'Cbryan',
-    phoneNumber: '(949) 537-1151',
-    name: 'Christopher Bryan',
-  },
-  {
-    id: 'k0QKnxm6eAV9A4iOU60T192zTv43',
-    username: 'jandoe',
-    phoneNumber: '(949) 537-1151',
-    name: 'Jane Doe',
-  },
-];
+import CustomLoadingOverlay from '../../UI/CustomLoadingOverlay';
 
 const PeopleMainComponent = ({
   navigation,
@@ -103,39 +43,7 @@ const PeopleMainComponent = ({
   const [friendHeaderIndexes, setFriendHeaderIndexes] = useState<number[]>([]);
   const [lastPaginatedDoc, setLastPaginatedDoc] = useState<User>();
   const [refreshing, setRefreshing] = useState<boolean>(false);
-
-  const fetchFriends = async () => {
-    // use onSnapshot to listen to new friends
-    // First fetch your Top People, and then Friends
-    let headerIndex = [0];
-    let currentIdx = 1;
-    let friendsData: UserListItem[] = [
-      {header_name: 'Top People', is_header: true},
-    ];
-    // Top People (always going to be the first index)
-    // search database for top people that are associated with this user
-    await topPeopleTestData.forEach(person => {
-      friendsData.push({
-        user: person,
-        is_header: false,
-      });
-      currentIdx++;
-    });
-    // Friends
-    friendsData.push({header_name: 'Friends', is_header: true});
-    headerIndex.push(currentIdx);
-    await peopleTestData.forEach(person => {
-      friendsData.push({
-        user: person,
-        is_header: false,
-      });
-      currentIdx++;
-    });
-    // set the headerIndexes and the people list data
-
-    setFriends(friendsData);
-    setFriendHeaderIndexes(headerIndex);
-  };
+  const [loading, setLoading] = useState<boolean>(false);
 
   const paginateSearchQuery = () => {
     if (lastPaginatedDoc) {
@@ -145,8 +53,12 @@ const PeopleMainComponent = ({
       setRefreshing(true);
       firestore()
         .collection('users')
-        .where('name', '>=', searchQuery)
-        .where('name', '<=', searchQuery + AUTOCOMPLETE_SUFFIX)
+        .where(
+          firestore.Filter.and(
+            firestore.Filter('name', '>=', searchQuery),
+            firestore.Filter('name', '<=', searchQuery + AUTOCOMPLETE_SUFFIX),
+          ),
+        )
         .orderBy('name')
         .orderBy('__name__')
         .startAfter(lastPaginatedDoc.name, lastPaginatedDoc.id)
@@ -154,6 +66,9 @@ const PeopleMainComponent = ({
         .get()
         .then(querySnapshot => {
           querySnapshot.forEach(doc => {
+            if (doc.id === user) {
+              return;
+            }
             const person = doc.data() as User;
             const _user = {
               id: doc.id,
@@ -186,10 +101,6 @@ const PeopleMainComponent = ({
   };
 
   useEffect(() => {
-    fetchFriends();
-  }, []);
-
-  useEffect(() => {
     // for query searching
     const getSearchQuery = async () => {
       if (searchQuery) {
@@ -202,14 +113,21 @@ const PeopleMainComponent = ({
         // ex: type A then delete A, it will still show the result when A is typed in because no await is used.
         firestore()
           .collection('users')
-          .where('name', '>=', searchQuery)
-          .where('name', '<=', searchQuery + AUTOCOMPLETE_SUFFIX)
+          .where(
+            firestore.Filter.and(
+              firestore.Filter('name', '>=', searchQuery),
+              firestore.Filter('name', '<=', searchQuery + AUTOCOMPLETE_SUFFIX),
+            ),
+          )
           .orderBy('name')
           .orderBy('__name__')
           .limit(PAGINATION_LIMIT)
           .get()
           .then(async querySnapshot => {
             await querySnapshot.forEach(doc => {
+              if (doc.id === user) {
+                return;
+              }
               const person = doc.data();
               const _user = {
                 id: doc.id,
@@ -240,7 +158,7 @@ const PeopleMainComponent = ({
       }
     };
     getSearchQuery();
-  }, [searchQuery]);
+  }, [searchQuery, user]);
 
   useEffect(() => {
     // check if there are any new friend request or get the current friends for display
@@ -249,42 +167,64 @@ const PeopleMainComponent = ({
       const friends_unsubscribe = firestore()
         .collection('friends')
         .doc(user)
-        .onSnapshot(snapshot => {
-          if (snapshot.exists) {
-            const data = snapshot.data() as Friends;
-            setReceivedFriends(data.received);
-          }
-        });
+        .onSnapshot(
+          snapshot => {
+            if (snapshot.exists) {
+              setLoading(true);
+              let headerIndex = [0];
+              let currentIdx = 1;
+              let friendData: UserListItem[] = [
+                {header_name: 'Friends', is_header: true},
+              ];
+              const data = snapshot.data() as Friends;
+              Promise.all(
+                data.accepted.map(friend =>
+                  firestore().collection('users').doc(friend).get(),
+                ),
+              )
+                .then(response => {
+                  if (response.some(s => !s.exists)) {
+                    throw Error();
+                  }
+                  response.forEach(snap => {
+                    const person = snap.data() as User;
+                    friendData.push({
+                      user: {
+                        ...person,
+                        id: snap.id,
+                      },
+                      is_header: false,
+                    });
+                    currentIdx++;
+                  });
+                  setFriendHeaderIndexes(headerIndex);
+                  setFriends(friendData);
+                })
+                .catch(() => {
+                  Toast.show({
+                    type: 'error',
+                    text1: 'Unable to load people!',
+                    text2: 'Make sure you have a stable connection',
+                  });
+                })
+                .finally(() => {
+                  setLoading(false);
+                });
+            }
+          },
+          err => {
+            Toast.show({
+              type: 'error',
+              text1: err.message,
+            });
+          },
+        );
 
       return () => {
         friends_unsubscribe();
       };
     }
-  });
-
-  //   useEffect(() => {
-  //     if (user) {
-  //       const friends_unsubscribe = firestore()
-  //         .collection('friends')
-  //         .where('__name__', '==', user)
-  //         .onSnapshot(querySnapshot => {
-  //           let headerIndex = [0];
-  //           let currentIdx = 1;
-  //           let peopleData: UserListItem[] = [
-  //             {header_name: 'Friends', is_header: true},
-  //           ];
-  //           querySnapshot.docChanges().forEach(friend => {
-  //             // Get all the friends, or the new ones if a doc changes
-  //             const doc = friend.doc;
-  //             console.log(doc);
-  //           });
-  //         });
-
-  //       return () => {
-  //         friends_unsubscribe();
-  //       };
-  //     }
-  //   }, [user]);
+  }, [user]);
 
   return (
     <View
@@ -302,18 +242,24 @@ const PeopleMainComponent = ({
           />
         </View>
       </View>
-      <FlatList
-        className="w-screen px-6"
-        data={searchQuery ? people : friends}
-        renderItem={renderItems}
-        ItemSeparatorComponent={ListItemSeparatorComponent}
-        keyExtractor={(_, index) => index.toString()}
-        initialNumToRender={5}
-        maxToRenderPerBatch={3}
-        stickyHeaderIndices={searchQuery ? headerIndexes : friendHeaderIndexes}
-        onEndReachedThreshold={0.05}
-        onEndReached={searchQuery ? paginateSearchQuery : undefined}
-      />
+      {loading ? (
+        <CustomLoadingOverlay />
+      ) : (
+        <FlatList
+          className="w-screen px-6"
+          data={searchQuery ? people : friends}
+          renderItem={renderItems}
+          ItemSeparatorComponent={ListItemSeparatorComponent}
+          keyExtractor={(_, index) => index.toString()}
+          initialNumToRender={5}
+          maxToRenderPerBatch={3}
+          stickyHeaderIndices={
+            searchQuery ? headerIndexes : friendHeaderIndexes
+          }
+          onEndReachedThreshold={0.05}
+          onEndReached={searchQuery ? paginateSearchQuery : undefined}
+        />
+      )}
     </View>
   );
 };

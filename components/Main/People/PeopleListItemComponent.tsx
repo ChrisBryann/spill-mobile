@@ -16,7 +16,7 @@ const PeopleListItemComponent = ({user, onPress}: Props) => {
       onPress={onPress}>
       <Image
         className="w-12 h-12 rounded-full"
-        source={PEOPLE_PLACEHOLDER_IMG}
+        source={user.imageUri ? {uri: user.imageUri} : PEOPLE_PLACEHOLDER_IMG}
       />
       <View className="flex space-y-2 ">
         <FontText style="text-md font-semibold">{user.name}</FontText>
