@@ -3,7 +3,7 @@ import {
   NativeStackScreenProps,
   createNativeStackNavigator,
 } from '@react-navigation/native-stack';
-import {AppStackParamsList, AuthStackParamsList} from '../../screen.types';
+import {AppStackParamsList, AuthStackParamsList} from '../../types/screen';
 import SignupComponent from './SignupComponent';
 import SigninComponent from './SignInComponent';
 import {TouchableOpacity} from 'react-native';
@@ -13,9 +13,7 @@ import VerifyAccountComponent from './VerifyAccountComponent';
 
 const AuthStack = createNativeStackNavigator<AuthStackParamsList>();
 
-const AuthComponent = ({
-  navigation,
-}: NativeStackScreenProps<AppStackParamsList, 'Auth'>) => {
+const AuthComponent = () => {
   return (
     <AuthStack.Navigator
       initialRouteName="Signin"
@@ -26,6 +24,7 @@ const AuthComponent = ({
           </TouchableOpacity>
         ),
         headerTitle: props => <CustomHeaderTitle {...props} />,
+        headerShadowVisible: false,
       })}>
       <AuthStack.Screen
         name="Signup"
@@ -40,7 +39,7 @@ const AuthComponent = ({
       <AuthStack.Screen
         name="VerifyAccount"
         component={VerifyAccountComponent}
-        options={{title: ''}}
+        options={{title: 'Verify account'}}
       />
     </AuthStack.Navigator>
   );

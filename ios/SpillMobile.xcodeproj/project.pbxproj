@@ -11,19 +11,19 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		1DB524FB988C4A5195609814 /* Outfit-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C62AC23411E414D8E3CA584 /* Outfit-ExtraBold.ttf */; };
-		234DC5767B954BAAAB483F81 /* Outfit-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 69B526E503134FB5BE016AF3 /* Outfit-ExtraLight.ttf */; };
+		2C30967B0EF546A38B951373 /* Inter-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3F6D1690F72D4CCC9A7177EA /* Inter-Black.ttf */; };
 		2D924FA679DBBB12D2EA74FC /* Pods_SpillMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE919D98D0EE64346B194E04 /* Pods_SpillMobile.framework */; };
-		361A4DDC876B4EE4B86E649E /* Outfit-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A72BA278CC14F0BA632A049 /* Outfit-SemiBold.ttf */; };
-		418C4268CC334CD8854ED1B1 /* Outfit-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F56A6FFE48D448EEB95FA1E6 /* Outfit-Thin.ttf */; };
-		46D55AD5082946BCB57CE38B /* Outfit-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 452791B156F84AA8BA2EFEBE /* Outfit-Black.ttf */; };
-		6DDA9D9BF3F746238DF6637A /* Outfit-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CED5360380794D5EB456B5A0 /* Outfit-Light.ttf */; };
+		3163BE4EDEF84C108C551814 /* Inter-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 739139B59F32419096C1E9C4 /* Inter-ExtraBold.ttf */; };
+		3383BB5E074B42C084DE8EDA /* Inter-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CBC56DE0C3744DDA8037805B /* Inter-ExtraLight.ttf */; };
+		37E747557D6C410D9A73CBAD /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46BF61576EBA4227B15D2635 /* Inter-Bold.ttf */; };
+		49DEA8F93F8148E29EF125E5 /* Inter-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 74761A28D36E49069E497998 /* Inter-Thin.ttf */; };
+		50A2F32E2C65406D8DD4D191 /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C890E75D7B424CECA60B5D5F /* Inter-SemiBold.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		820B400CCA384137B6BC9E09 /* Outfit-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7D4EDE2DA814B188D321287 /* Outfit-Medium.ttf */; };
 		90D3FED02B366F1100BA94C4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 90D3FECF2B366F1100BA94C4 /* GoogleService-Info.plist */; };
-		A51B0AAE2F944A9296A32263 /* Outfit-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 509F5C7D38CD43CCB0424364 /* Outfit-Regular.ttf */; };
+		DB2C8FB310B14BCB8CDEF819 /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 65674450130C46B7A5B3E4BA /* Inter-Medium.ttf */; };
+		DBF5B4BD2BB745CFBA866552 /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5EAABB35AD9C4C5FAA0CEB80 /* Inter-Regular.ttf */; };
 		E3F8779269DC172A5AAA4CF4 /* Pods_SpillMobile_SpillMobileTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4248593D2F17246D53ED5CC /* Pods_SpillMobile_SpillMobileTests.framework */; };
-		FF95D9A9140944309671FC1B /* Outfit-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA14FD4693794288AEB82305 /* Outfit-Bold.ttf */; };
+		F82E708CC0194EE296DA6ADD /* Inter-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0D41C72522C5451E86562901 /* Inter-Light.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,36 +40,31 @@
 		00E356EE1AD99517003FC87E /* SpillMobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpillMobileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* SpillMobileTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpillMobileTests.m; sourceTree = "<group>"; };
-		0A72BA278CC14F0BA632A049 /* Outfit-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Outfit-SemiBold.ttf"; path = "../assets/fonts/Outfit-SemiBold.ttf"; sourceTree = "<group>"; };
-		0BF5338C90EB4C8A8019DC0C /* Quicksand-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Quicksand-Light.ttf"; path = "../assets/fonts/Quicksand-Light.ttf"; sourceTree = "<group>"; };
+		0D41C72522C5451E86562901 /* Inter-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Light.ttf"; path = "../assets/fonts/Inter-Light.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* SpillMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpillMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = SpillMobile/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = SpillMobile/AppDelegate.mm; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = SpillMobile/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = SpillMobile/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = SpillMobile/main.m; sourceTree = "<group>"; };
-		395743D037A44E15A49AE614 /* Quicksand-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Quicksand-Bold.ttf"; path = "../assets/fonts/Quicksand-Bold.ttf"; sourceTree = "<group>"; };
-		452791B156F84AA8BA2EFEBE /* Outfit-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Outfit-Black.ttf"; path = "../assets/fonts/Outfit-Black.ttf"; sourceTree = "<group>"; };
-		4C62AC23411E414D8E3CA584 /* Outfit-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Outfit-ExtraBold.ttf"; path = "../assets/fonts/Outfit-ExtraBold.ttf"; sourceTree = "<group>"; };
-		509F5C7D38CD43CCB0424364 /* Outfit-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Outfit-Regular.ttf"; path = "../assets/fonts/Outfit-Regular.ttf"; sourceTree = "<group>"; };
+		3F6D1690F72D4CCC9A7177EA /* Inter-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Black.ttf"; path = "../assets/fonts/Inter-Black.ttf"; sourceTree = "<group>"; };
+		46BF61576EBA4227B15D2635 /* Inter-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Bold.ttf"; path = "../assets/fonts/Inter-Bold.ttf"; sourceTree = "<group>"; };
 		51B00548C09D6A00E8CCD702 /* Pods-SpillMobile-SpillMobileTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpillMobile-SpillMobileTests.debug.xcconfig"; path = "Target Support Files/Pods-SpillMobile-SpillMobileTests/Pods-SpillMobile-SpillMobileTests.debug.xcconfig"; sourceTree = "<group>"; };
-		575DC7842D9C46FE8C6FA491 /* Quicksand-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Quicksand-SemiBold.ttf"; path = "../assets/fonts/Quicksand-SemiBold.ttf"; sourceTree = "<group>"; };
-		69B526E503134FB5BE016AF3 /* Outfit-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Outfit-ExtraLight.ttf"; path = "../assets/fonts/Outfit-ExtraLight.ttf"; sourceTree = "<group>"; };
+		5EAABB35AD9C4C5FAA0CEB80 /* Inter-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Regular.ttf"; path = "../assets/fonts/Inter-Regular.ttf"; sourceTree = "<group>"; };
+		65674450130C46B7A5B3E4BA /* Inter-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Medium.ttf"; path = "../assets/fonts/Inter-Medium.ttf"; sourceTree = "<group>"; };
+		739139B59F32419096C1E9C4 /* Inter-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-ExtraBold.ttf"; path = "../assets/fonts/Inter-ExtraBold.ttf"; sourceTree = "<group>"; };
+		74761A28D36E49069E497998 /* Inter-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Thin.ttf"; path = "../assets/fonts/Inter-Thin.ttf"; sourceTree = "<group>"; };
 		7D69B80CCC7F6AD98ADCB341 /* Pods-SpillMobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpillMobile.release.xcconfig"; path = "Target Support Files/Pods-SpillMobile/Pods-SpillMobile.release.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = SpillMobile/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		904F871B058A418EA30403D9 /* Quicksand-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Quicksand-Medium.ttf"; path = "../assets/fonts/Quicksand-Medium.ttf"; sourceTree = "<group>"; };
 		90D3FECF2B366F1100BA94C4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		90D3FED12B367B5600BA94C4 /* SpillMobile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = SpillMobile.entitlements; path = SpillMobile/SpillMobile.entitlements; sourceTree = "<group>"; };
-		A7D4EDE2DA814B188D321287 /* Outfit-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Outfit-Medium.ttf"; path = "../assets/fonts/Outfit-Medium.ttf"; sourceTree = "<group>"; };
-		AFB7BB5633E0470381241FBC /* Quicksand-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Quicksand-Regular.ttf"; path = "../assets/fonts/Quicksand-Regular.ttf"; sourceTree = "<group>"; };
 		B3E0E62526010633655A7A44 /* Pods-SpillMobile-SpillMobileTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpillMobile-SpillMobileTests.release.xcconfig"; path = "Target Support Files/Pods-SpillMobile-SpillMobileTests/Pods-SpillMobile-SpillMobileTests.release.xcconfig"; sourceTree = "<group>"; };
-		CED5360380794D5EB456B5A0 /* Outfit-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Outfit-Light.ttf"; path = "../assets/fonts/Outfit-Light.ttf"; sourceTree = "<group>"; };
+		C890E75D7B424CECA60B5D5F /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-SemiBold.ttf"; path = "../assets/fonts/Inter-SemiBold.ttf"; sourceTree = "<group>"; };
+		CBC56DE0C3744DDA8037805B /* Inter-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-ExtraLight.ttf"; path = "../assets/fonts/Inter-ExtraLight.ttf"; sourceTree = "<group>"; };
 		D3C8DD50D3F18C944CD3194A /* Pods-SpillMobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpillMobile.debug.xcconfig"; path = "Target Support Files/Pods-SpillMobile/Pods-SpillMobile.debug.xcconfig"; sourceTree = "<group>"; };
 		E4248593D2F17246D53ED5CC /* Pods_SpillMobile_SpillMobileTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpillMobile_SpillMobileTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		EE919D98D0EE64346B194E04 /* Pods_SpillMobile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpillMobile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F56A6FFE48D448EEB95FA1E6 /* Outfit-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Outfit-Thin.ttf"; path = "../assets/fonts/Outfit-Thin.ttf"; sourceTree = "<group>"; };
-		FA14FD4693794288AEB82305 /* Outfit-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Outfit-Bold.ttf"; path = "../assets/fonts/Outfit-Bold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,20 +175,15 @@
 		E95E1A0945BB4D5DAF4D39FC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				395743D037A44E15A49AE614 /* Quicksand-Bold.ttf */,
-				0BF5338C90EB4C8A8019DC0C /* Quicksand-Light.ttf */,
-				904F871B058A418EA30403D9 /* Quicksand-Medium.ttf */,
-				AFB7BB5633E0470381241FBC /* Quicksand-Regular.ttf */,
-				575DC7842D9C46FE8C6FA491 /* Quicksand-SemiBold.ttf */,
-				452791B156F84AA8BA2EFEBE /* Outfit-Black.ttf */,
-				FA14FD4693794288AEB82305 /* Outfit-Bold.ttf */,
-				4C62AC23411E414D8E3CA584 /* Outfit-ExtraBold.ttf */,
-				69B526E503134FB5BE016AF3 /* Outfit-ExtraLight.ttf */,
-				CED5360380794D5EB456B5A0 /* Outfit-Light.ttf */,
-				A7D4EDE2DA814B188D321287 /* Outfit-Medium.ttf */,
-				509F5C7D38CD43CCB0424364 /* Outfit-Regular.ttf */,
-				0A72BA278CC14F0BA632A049 /* Outfit-SemiBold.ttf */,
-				F56A6FFE48D448EEB95FA1E6 /* Outfit-Thin.ttf */,
+				3F6D1690F72D4CCC9A7177EA /* Inter-Black.ttf */,
+				46BF61576EBA4227B15D2635 /* Inter-Bold.ttf */,
+				739139B59F32419096C1E9C4 /* Inter-ExtraBold.ttf */,
+				CBC56DE0C3744DDA8037805B /* Inter-ExtraLight.ttf */,
+				0D41C72522C5451E86562901 /* Inter-Light.ttf */,
+				65674450130C46B7A5B3E4BA /* Inter-Medium.ttf */,
+				5EAABB35AD9C4C5FAA0CEB80 /* Inter-Regular.ttf */,
+				C890E75D7B424CECA60B5D5F /* Inter-SemiBold.ttf */,
+				74761A28D36E49069E497998 /* Inter-Thin.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -295,16 +285,16 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				46D55AD5082946BCB57CE38B /* Outfit-Black.ttf in Resources */,
-				FF95D9A9140944309671FC1B /* Outfit-Bold.ttf in Resources */,
-				1DB524FB988C4A5195609814 /* Outfit-ExtraBold.ttf in Resources */,
 				90D3FED02B366F1100BA94C4 /* GoogleService-Info.plist in Resources */,
-				234DC5767B954BAAAB483F81 /* Outfit-ExtraLight.ttf in Resources */,
-				6DDA9D9BF3F746238DF6637A /* Outfit-Light.ttf in Resources */,
-				820B400CCA384137B6BC9E09 /* Outfit-Medium.ttf in Resources */,
-				A51B0AAE2F944A9296A32263 /* Outfit-Regular.ttf in Resources */,
-				361A4DDC876B4EE4B86E649E /* Outfit-SemiBold.ttf in Resources */,
-				418C4268CC334CD8854ED1B1 /* Outfit-Thin.ttf in Resources */,
+				2C30967B0EF546A38B951373 /* Inter-Black.ttf in Resources */,
+				37E747557D6C410D9A73CBAD /* Inter-Bold.ttf in Resources */,
+				3163BE4EDEF84C108C551814 /* Inter-ExtraBold.ttf in Resources */,
+				3383BB5E074B42C084DE8EDA /* Inter-ExtraLight.ttf in Resources */,
+				F82E708CC0194EE296DA6ADD /* Inter-Light.ttf in Resources */,
+				DB2C8FB310B14BCB8CDEF819 /* Inter-Medium.ttf in Resources */,
+				DBF5B4BD2BB745CFBA866552 /* Inter-Regular.ttf in Resources */,
+				50A2F32E2C65406D8DD4D191 /* Inter-SemiBold.ttf in Resources */,
+				49DEA8F93F8148E29EF125E5 /* Inter-Thin.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -612,7 +602,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -664,6 +654,18 @@
 					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers/platform/ios",
 					"${PODS_CONFIGURATION_BUILD_DIR}/React-NativeModulesApple/React_NativeModulesApple.framework/Headers",
 					"${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers/react/renderer/graphics/platform/ios",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/React-Fabric/React_Fabric.framework/Headers/react/renderer/components/view/platform/cxx",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/React-Fabric/React_Fabric.framework/Headers/react/renderer/components/view/platform/cxx",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/React-Fabric/React_Fabric.framework/Headers/react/renderer/components/view/platform/cxx",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/React-Fabric/React_Fabric.framework/Headers/react/renderer/components/view/platform/cxx",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -694,6 +696,7 @@
 				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
+				USE_HERMES = true;
 			};
 			name = Debug;
 		};
@@ -702,7 +705,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -750,6 +753,18 @@
 					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers/platform/ios",
 					"${PODS_CONFIGURATION_BUILD_DIR}/React-NativeModulesApple/React_NativeModulesApple.framework/Headers",
 					"${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers/react/renderer/graphics/platform/ios",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/React-Fabric/React_Fabric.framework/Headers/react/renderer/components/view/platform/cxx",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/React-Fabric/React_Fabric.framework/Headers/react/renderer/components/view/platform/cxx",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/React-Fabric/React_Fabric.framework/Headers/react/renderer/components/view/platform/cxx",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/React-Fabric/React_Fabric.framework/Headers/react/renderer/components/view/platform/cxx",
+					" ${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -779,6 +794,7 @@
 				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
+				USE_HERMES = true;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

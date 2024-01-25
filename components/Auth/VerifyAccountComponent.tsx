@@ -16,13 +16,14 @@ import {
   useBlurOnFulfill,
   useClearByFocusCell,
 } from 'react-native-confirmation-code-field';
-import {AppStackParamsList, AuthStackParamsList} from '../../screen.types';
+import {AppStackParamsList, AuthStackParamsList} from '../../types/screen';
 import FontText from '../UI/FontText';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import {CompositeScreenProps} from '@react-navigation/native';
 import CustomLoadingOverlay from '../UI/CustomLoadingOverlay';
 import Toast from 'react-native-toast-message';
+import {Friends} from '../../types/schema';
 
 const CELL_COUNT = 6;
 
@@ -61,19 +62,40 @@ const VerifyAccountComponent = ({
         if (previousScreen === 'Signup') {
           // sign up successful, set a new user in users collection with the auto generated id
           // sign up assumes the full name and username is passed down to this screen
+          // use batch writes to set multiple docs
 
-          firestore()
-            .collection('users')
-            .doc(user.user.uid)
-            .set({
-              name: fullName!,
-              username: userName!,
-              phoneNumber: phoneNumber.replaceAll('[()\\s-]+', '').trim(),
+          const batch = firestore().batch();
+          // set the user info profile
+          batch.set(firestore().collection('users').doc(user.user.uid), {
+            name: fullName!,
+            username: userName!,
+            phoneNumber: phoneNumber.replaceAll('[()\\s-]+', '').trim(),
+            imageUri: null,
+          });
+          // set the friends profile
+          batch.set(firestore().collection('friends').doc(user.user.uid), {
+            sent: [],
+            received: [],
+            accepted: [],
+            blocked: [],
+          } as Friends);
+
+          batch.commit().catch(() => {
+            Toast.show({
+              type: 'error',
+              text1: 'Unable to sign up!',
+              text2: 'Make sure you have a stable connection.',
             });
+          });
         }
         // if we sign in, then we just let onAuthStateChanged get the user id
-        // navigate to the home screen once successful
-        navigation.navigate('Home');
+        // navigate to the main screen once successful
+        navigation.navigate('Main', {
+          screen: 'MainTabBar',
+          params: {
+            screen: 'Home',
+          },
+        });
       })
       .catch(error => {
         if (error.code === 'auth/invalid-verification-code') {
@@ -92,10 +114,17 @@ const VerifyAccountComponent = ({
         } else {
           Toast.show({
             type: 'error',
-            text1: 'Unable to sign in!',
+            text1: `Unable to ${
+              previousScreen === 'Signup' ? 'sign up' : 'sign in'
+            }!`,
             text2: 'Make sure you have a stable connection.',
           });
-          console.log('Unable to sign in with credentials', error);
+          console.log(
+            `Unable to ${
+              previousScreen === 'Signup' ? 'sign up' : 'sign in'
+            } with credentials`,
+            error,
+          );
         }
       })
       .finally(() => {
@@ -194,7 +223,7 @@ const styles = StyleSheet.create({
     color: '#000',
     fontSize: 36,
     textAlign: 'center',
-    fontFamily: 'Outfit',
+    fontFamily: 'Inter',
   },
   focusCell: {
     borderBottomColor: '#014737',

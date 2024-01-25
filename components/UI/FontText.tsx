@@ -16,5 +16,5 @@ const FontText = ({children, style}: Props) => {
 export default FontText;
 
 export const FontTextStyles = StyleSheet.create({
-  text: {fontFamily: 'Outfit'},
+  text: {fontFamily: 'Inter', flexShrink: 1},
 });

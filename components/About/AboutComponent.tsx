@@ -1,7 +1,7 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
 import {Image, TouchableOpacity, View} from 'react-native';
-import {AppStackParamsList} from '../../screen.types';
+import {AppStackParamsList} from '../../types/screen';
 import {NC_BILL_IMG} from '../../assets/images';
 import FontText from '../UI/FontText';
 import {SafeAreaView} from 'react-native-safe-area-context';
