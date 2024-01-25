@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import {ScrollView, StyleSheet, TouchableOpacity, View} from 'react-native';
 import FontText from '../../UI/FontText';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
@@ -14,6 +14,13 @@ import {selectUser} from '../../../store/User/userSlice';
 import Toast from 'react-native-toast-message';
 import {Friends} from '../../../types/schema';
 import CustomLoadingOverlay from '../../UI/CustomLoadingOverlay';
+import * as Progress from 'react-native-progress';
+import {
+  BottomSheetBackdrop,
+  BottomSheetBackdropProps,
+  BottomSheetModal,
+  BottomSheetView,
+} from '@gorhom/bottom-sheet';
 
 const PeopleProfileComponent = ({
   navigation,
@@ -27,6 +34,29 @@ const PeopleProfileComponent = ({
     'accepted' | 'pending' | 'blocked' | 'none'
   >('none');
   const [numOfFriends, setNumOfFriends] = useState<number>(0);
+  // bottom sheet ref
+  const friendBottomSheetModalRef = useRef<BottomSheetModal>(null);
+  // variables
+  const snapPoints = useMemo(() => ['30%'], []);
+  const handleCancelRemoveFriend = useCallback(() => {
+    friendBottomSheetModalRef.current?.dismiss();
+  }, []);
+  const handleRemoveFriendExpand = useCallback(() => {
+    friendBottomSheetModalRef.current?.present();
+  }, []);
+  const renderBackdrop = useCallback(
+    (props: BottomSheetBackdropProps) => (
+      <BottomSheetBackdrop
+        {...props}
+        pressBehavior="close"
+        disappearsOnIndex={-1}
+        appearsOnIndex={0}
+        opacity={0.5}
+      />
+    ),
+    [],
+  );
+
   useEffect(() => {
     navigation.setOptions({
       title: person.name,
@@ -48,6 +78,8 @@ const PeopleProfileComponent = ({
                 setFriendStatus('accepted');
               } else if (data.blocked.some(id => id === user)) {
                 setFriendStatus('blocked');
+              } else {
+                setFriendStatus('none');
               }
               setNumOfFriends(data.accepted.length);
             } finally {
@@ -116,11 +148,11 @@ const PeopleProfileComponent = ({
 
       // step 1
       batch.update(firestore().collection('friends').doc(person.id), {
-        accepted: firestore.FieldValue.arrayUnion(user),
+        accepted: firestore.FieldValue.arrayRemove(user),
       });
       // step 2
       batch.update(firestore().collection('friends').doc(user), {
-        accepted: firestore.FieldValue.arrayUnion(person.id),
+        accepted: firestore.FieldValue.arrayRemove(person.id),
       });
 
       batch
@@ -156,12 +188,12 @@ const PeopleProfileComponent = ({
         </View>
         <View className="flex-row items-center">
           <TouchableOpacity
-            disabled={friendStatus !== 'none'}
+            disabled={friendStatus === 'pending'}
             onPress={
               friendStatus === 'none'
                 ? onAddFriend
                 : friendStatus === 'accepted'
-                ? onRemoveFriend
+                ? handleRemoveFriendExpand
                 : undefined
             }
             className={`flex-row items-center p-2 mx-2 ${
@@ -171,7 +203,9 @@ const PeopleProfileComponent = ({
                 ? 'bg-green-700'
                 : friendStatus === 'pending' && 'bg-gray-200'
             }`}>
-            {friendStatus === 'none' ? (
+            {friendStatusLoading ? (
+              <Progress.CircleSnail size={24} color="white" indeterminate />
+            ) : friendStatus === 'none' ? (
               <UserPlusIcon size={16} color={'white'} />
             ) : friendStatus === 'accepted' ? (
               <UserMinusIcon size={16} color={'#046C4E'} />
@@ -215,6 +249,37 @@ const PeopleProfileComponent = ({
           Start a new spill by tapping the plus button
         </FontText>
       </ScrollView>
+      <BottomSheetModal
+        ref={friendBottomSheetModalRef}
+        index={0}
+        snapPoints={snapPoints}
+        backdropComponent={renderBackdrop}
+        enablePanDownToClose
+        enableDismissOnClose>
+        <BottomSheetView>
+          <View className="items-center space-y-4">
+            <FontText style="text-center text-lg font-medium">
+              Are you sure you want to unfriend {person.name}?
+            </FontText>
+            <TouchableOpacity
+              onPress={onRemoveFriend}
+              className="w-4/6 bg-green-900 p-3 rounded-full items-center">
+              {friendStatusLoading ? (
+                <Progress.CircleSnail size={24} color="white" indeterminate />
+              ) : (
+                <FontText style="text-center text-white font-semibold">
+                  Unfriend
+                </FontText>
+              )}
+            </TouchableOpacity>
+            <TouchableOpacity onPress={handleCancelRemoveFriend}>
+              <FontText style="text-center text-green-800 font-semibold">
+                Cancel
+              </FontText>
+            </TouchableOpacity>
+          </View>
+        </BottomSheetView>
+      </BottomSheetModal>
     </View>
   );
 };

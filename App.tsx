@@ -20,6 +20,8 @@ import {clearUser, selectUser, setUser} from './store/User/userSlice';
 import auth from '@react-native-firebase/auth';
 import Toast from 'react-native-toast-message';
 import MainComponent from './components/Main/MainComponent';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import {BottomSheetModalProvider} from '@gorhom/bottom-sheet';
 
 // import {useColorScheme} from 'nativewind';
 
@@ -60,24 +62,28 @@ function App(): JSX.Element {
   return (
     <>
       <StatusBar barStyle={'dark-content'} />
-      <NavigationContainer>
-        <AppStack.Navigator
-          initialRouteName={user ? 'Main' : 'About'}
-          screenOptions={{headerShown: false}}>
-          <AppStack.Screen
-            name="About"
-            component={AboutComponent}
-            options={{headerShown: false}}
-          />
-          <AppStack.Screen name="Auth" component={AuthComponent} />
-          <AppStack.Screen
-            name="Main"
-            component={MainComponent}
-            options={{headerShown: false}}
-          />
-        </AppStack.Navigator>
-      </NavigationContainer>
-      <Toast />
+      <GestureHandlerRootView style={{flex: 1}}>
+        <BottomSheetModalProvider>
+          <NavigationContainer>
+            <AppStack.Navigator
+              initialRouteName={user ? 'Main' : 'About'}
+              screenOptions={{headerShown: false}}>
+              <AppStack.Screen
+                name="About"
+                component={AboutComponent}
+                options={{headerShown: false}}
+              />
+              <AppStack.Screen name="Auth" component={AuthComponent} />
+              <AppStack.Screen
+                name="Main"
+                component={MainComponent}
+                options={{headerShown: false}}
+              />
+            </AppStack.Navigator>
+          </NavigationContainer>
+          <Toast />
+        </BottomSheetModalProvider>
+      </GestureHandlerRootView>
     </>
   );
 }

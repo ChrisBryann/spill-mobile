@@ -89,7 +89,7 @@ const HomeMainOptions: (props: {
   title: '',
   headerLeft: () => (
     <View>
-      <FontText style="text-3xl text-[#03543F] font-semibold">spill.</FontText>
+      <FontText style="text-3xl text-green-800 font-semibold">spill.</FontText>
     </View>
   ),
   headerRight: () => (
